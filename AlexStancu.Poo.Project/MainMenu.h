@@ -22,11 +22,7 @@ public:
 		cout << "-       Please choose an option:           -\n";
 		cout << "-        1. Create a ticket                -\n";
 		cout << "-        2.Read/Check a ticket             -\n";
-		cout << "-                                          -\n";
-		cout << "-                                          -\n";
-		cout << "-                                          -\n";
-		cout << "-                                          -\n";
-		cout << "-                                          -\n";
+		cout << "-        3.EXIT                            -\n";
 		cout << "-                                          -\n";
 		cout << "--------------------------------------------\n";
 
@@ -36,35 +32,96 @@ public:
 
 	void getOptionFomKeyboard()
 	{
-
 		string menuOption;
-		string line;
-		//ifstream myfile("comenzi.txt");
-
-	/*	if (myfile)
-		{
-			getline(myfile, line);
-
-		}
-		else cout << "We' ve got a problem \n";
-		do {
-			sqlText = line;*/
-
-
-	cout << "(Write 1 or 2):";
-
-
-
 		string mainMenuOption = "1";
+		string uniqueId;
+		string eventType;
+
+		cout << "             (Write 1 or 2  or 3): ";
+		cout << "                                            \n";
+		cout << "                                            \n";
+		
 		cin >> mainMenuOption;
 		switch (stoi(mainMenuOption)) {
 		case 1:
-			cout << "Option1	                   ";
-			cin >> mainMenuOption;
+			cout << "---------- Create a new Ticket:------------\n";
+			cout << "-Event type: (movie, music, football)      -\n";
+			cout << "-                                          -\n";
+			cin >> eventType;
+			if (eventType == "movie")
+			{
+				cout << "-                                          -\n";
+				cout << "-Movie category: (Normal, VIP)                -\n";
+				cout << "-                                          -\n";
+				cout << "-Stand row: (1 ... 9)                      -\n";
+				cout << "-                                          -\n";
+				cout << "-Row seat number: (1 ...  50)              -\n";
+				cout << "-                                          -\n";
+				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
+				cout << "-                                          -\n";
+				cout << "--------------------------------------------\n";
+			}
+			else if (eventType == "music")
+			{
+				cout << "-                                          -\n";
+				cout << "-Theatre cat.:(Category 1, Category 2, BOX)-\n";
+				cout << "-                                          -\n";
+				cout << "-Stand row: (1 ... 9)                      -\n";
+				cout << "-                                          -\n";
+				cout << "-Row seat number: (1 ...  50)              -\n";
+				cout << "-                                          -\n";
+				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
+				cout << "-                                          -\n";
+				cout << "--------------------------------------------\n";
+
+			}
+			else if (eventType == "football")
+			{
+				cout << "-                                          -\n";
+				cout << "-Event stand: (Stand 1, Stand 2)           -\n";
+				cout << "-                                          -\n";
+				cout << "-Stand row: (1 ... 9)                      -\n";
+				cout << "-                                          -\n";
+				cout << "-Row seat number: (1 ...  50)              -\n";
+				cout << "-                                          -\n";
+				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
+				cout << "-                                          -\n";
+				cout << "--------------------------------------------\n";
+			}
+			else
+			{
+				cout << "Not a valid event type!";
+			}
 			break;
+
 		case 2:
-			cout << "Option2                       ";
-			cin >> mainMenuOption;
+			cout << "--------Read an existing ticket-------------\n";
+			cout << "-                                          -\n";
+			cout << "           Insert UNIQUE ID:   ";
+
+			cin >> uniqueId;
+
+			if (uniqueId == "aaa")
+			{
+				cout << "-                                          -\n";
+				cout << "-            Ticket  OK                    -\n";
+				cout << "-                                          -\n";
+				cout << "--------------------------------------------\n";
+			}
+			else
+			{
+				cout << "-                                          -\n";
+				cout << "-            Ticket NOT OK                 -\n";
+				cout << "-                                          -\n";
+				cout << "--------------------------------------------\n";
+			}
+			break;
+
+		case 3:
+			cout << "---------------Exited-----------------------\n";
+			cout << "-                                          -\n";
+			cout << "-                                          -\n";
+			cout << "--------------------------------------------\n";
 			break;
 
 		}
