@@ -145,6 +145,7 @@
     <ClInclude Include="CreateTicket.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="ReadTicket.h" />
+    <ClInclude Include="Ticket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,6 +16,17 @@ public:
 
 	};
 
+	//MainMenu()
+	//{
+
+	//	//params
+	//};
+
+	~MainMenu()
+	{
+
+	};
+
 	void printMainMenu()
 	{
 		cout << "---------------Main Menu--------------------\n";
@@ -23,7 +34,6 @@ public:
 		cout << "-        1. Create a ticket                -\n";
 		cout << "-        2.Read/Check a ticket             -\n";
 		cout << "-        3.EXIT                            -\n";
-		cout << "-                                          -\n";
 		cout << "--------------------------------------------\n";
 
 	
@@ -36,6 +46,7 @@ public:
 		string mainMenuOption = "1";
 		string uniqueId;
 		string eventType;
+		string eventName;
 
 		cout << "             (Write 1 or 2  or 3): ";
 		cout << "                                            \n";
@@ -51,20 +62,24 @@ public:
 			if (eventType == "movie")
 			{
 				cout << "-                                          -\n";
-				cout << "-Movie category: (Normal, VIP)                -\n";
+				cout << "-Insert movie name:                        -\n";
 				cout << "-                                          -\n";
-				cout << "-Stand row: (1 ... 9)                      -\n";
+				cout << "-Movie category: (Normal, VIP)             -\n";
 				cout << "-                                          -\n";
-				cout << "-Row seat number: (1 ...  50)              -\n";
+				cout << "-Stand row: (1 ... 5)                      -\n";
+				cout << "-                                          -\n";
+				cout << "-Row seat number: (1 ...  10)              -\n";
 				cout << "-                                          -\n";
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
-				cout << "--------------------------------------------\n";
+				cout << "____________________________________________\n";
 			}
 			else if (eventType == "music")
 			{
 				cout << "-                                          -\n";
-				cout << "-Theatre cat.:(Category 1, Category 2, BOX)-\n";
+				cout << "-Insert theatrical piece name:             -\n";
+				cout << "-                                          -\n";
+				cout << "-Theatre cat.:(Category 1, Category 2)-\n";
 				cout << "-                                          -\n";
 				cout << "-Stand row: (1 ... 9)                      -\n";
 				cout << "-                                          -\n";
@@ -72,11 +87,13 @@ public:
 				cout << "-                                          -\n";
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
-				cout << "--------------------------------------------\n";
+				cout << "____________________________________________\n";
 
 			}
 			else if (eventType == "football")
 			{
+				cout << "-                                          -\n";
+				cout << "-Insert match name:                        -\n";
 				cout << "-                                          -\n";
 				cout << "-Event stand: (Stand 1, Stand 2)           -\n";
 				cout << "-                                          -\n";
@@ -86,11 +103,14 @@ public:
 				cout << "-                                          -\n";
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
-				cout << "--------------------------------------------\n";
+				cout << "____________________________________________\n";
 			}
 			else
 			{
-				cout << "Not a valid event type!";
+				cout << "-                                          -\n";
+				cout << "-        Not a valid event type!           -\n"        ;
+				cout << "-                                          -\n";
+				cout << "____________________________________________\n";
 			}
 			break;
 
@@ -106,7 +126,7 @@ public:
 				cout << "-                                          -\n";
 				cout << "-            Ticket  OK                    -\n";
 				cout << "-                                          -\n";
-				cout << "--------------------------------------------\n";
+				cout << "____________________________________________\n";
 			}
 			else
 			{
