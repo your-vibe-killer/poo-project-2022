@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <vector>
 #include "ReadTicket.h"
-#include "CreateTicket.h"
+#include "Ticket.h"
 using namespace std;
 
 
@@ -42,18 +42,21 @@ public:
 
 	void getOptionFomKeyboard()
 	{
+		Ticket ticketList[50]; //list of all tickets
+		int i = 0;
 
 		
 		string mainMenuOption = "";
 
 		char eventType[10] = "";
-		char* eventName = nullptr;
+		char* eventName = new char[strlen("tHISISTHELONGESTNAMEIGUESS") + 1];
 		string eventCategory = "";
 		int row = 0;
 		int seatNr = 0;
 		int isSeatTaken[5][10];   //0/1 if seat is taken - like a map
 		//bool isSeatTaken=false;
-		string uniqueId;  //only need it for reading?
+		int uniqueId;  //only need it for reading?
+		//int* 
 
 		cout << "             (Write 1 or 2 or 3): ";
 		cout << "                                            \n";
@@ -62,6 +65,7 @@ public:
 		cin >> mainMenuOption;
 		switch (stoi(mainMenuOption)) {
 		case 1:
+		{
 			cout << "---------- Create a new Ticket:------------\n";
 			cout << "-Event type: (movie, music, football)      -\n";
 			cout << "-                                          -\n";
@@ -84,8 +88,10 @@ public:
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				CreateTicket movieTicket(char eventType, const char* eventName, string eventCategory, int row, int seat);
-		
+				Ticket movieTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
+				//ticketList[i]= movieTicket;
+				//movieTicket.addTicketIdToList();
+
 			}
 			else if (eventType == "music")
 			{
@@ -105,7 +111,7 @@ public:
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				CreateTicket musicTicket(char eventType, const char* eventName, string eventCategory, int row, int seat);
+				Ticket musicTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
 
 			}
 			else if (eventType == "football")
@@ -126,32 +132,38 @@ public:
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				CreateTicket footballTicket(char eventType, const char* eventName, string eventCategory, int row, int seat);
+				Ticket footballTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
 			}
 			else
 			{
 				cout << "-                                          -\n";
-				cout << "-        Not a valid event type!           -\n"        ;
+				cout << "-        Not a valid event type!           -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
 			}
+
+		}
 			break;
 
 		case 2:
+		{
 			cout << "--------Read an existing ticket-------------\n";
 			cout << "-                                          -\n";
 			cout << "           Insert UNIQUE ID:   ";
 
 			cin >> uniqueId;
+			ReadTicket readTicket;
+			readTicket.checkTicketValidity(uniqueId);
 
-			if (uniqueId == "aaa")
+			if (uniqueId == 0)
 			{
 				cout << "-                                          -\n";
-				cout << "-            Ticket  OK                    -\n";
+				cout << "-       Ticket  OK                         -\n";
+				cout << "ID: " << uniqueId;
 				cout << "-                                          -\n";
-				ReadTicket readTicket;
-				//readTicket.checkTicketValidity(CreateTicket ticket);     //cum facem check ul?
-				//cout << "____________________________________________\n";
+				//readTicket.printTicketDetails();  DON T NEED IT YET
+				cout << "-                                          -\n";
+				cout << "____________________________________________\n";
 			}
 			else
 			{
@@ -160,6 +172,8 @@ public:
 				cout << "-                                          -\n";
 				cout << "--------------------------------------------\n";
 			}
+
+		}
 			break;
 
 		case 3:
@@ -171,13 +185,7 @@ public:
 
 		}
 
-		//CreateTicket createTicket(string eventType, string eventName,int row, int seat, string uniqueId );
-		//ReadTicket readTicket();
-		//Ticket ticket();
 
-		CreateTicket ticketList[50]; //list of all tickets
-		int i = 0;
-		//ticketList[i] = ticket;
 
 		//return ticket;
 

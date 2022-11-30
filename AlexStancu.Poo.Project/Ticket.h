@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-class CreateTicket
+class Ticket
 {
 private:
 
@@ -32,17 +32,38 @@ private:
 public:
 
 
-	CreateTicket():id(0)
+	Ticket():id(0)
 	{
 
 	}
 
 
-	CreateTicket(char eventType, const char eventName, string eventCategory, int row, int seat) :id(0)
+	Ticket( char eventType[], const char eventName, string eventCategory, int row, int seat) :id(ID++)
 	{
+		//char* eventType = new char[strlen(eventType) + 1];
 
+		strcpy_s(this->eventType, eventType);
+		this->eventCategory = eventCategory;
+		this->row = row;
+		this->seat = seat;
+
+		cout << "row: " << row ;
+		cout << "seat: " <<seat;
 	}
 
+	Ticket(char eventType[], string eventCategory, int row, int seat) :id(ID++)
+	{
+
+		strcpy_s(this->eventType, eventType);
+		this->eventCategory = eventCategory;
+		this->row = row;
+		this->seat = seat;
+
+		cout << "Type: " << eventType;
+		cout << "Category: " << eventCategory;
+		cout << "row: " << row;
+		cout << "seat: " << seat;
+	}
 
 	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
 	//{
@@ -50,14 +71,19 @@ public:
 
 	//}
 
-	~CreateTicket()
+	~Ticket()
 	{
 
 	}
 
+	void addTicketIdToList()
+	{
+		//create a txt with id s, add in it the id
+	}
 
 
-	void printTicketDetails(CreateTicket ticket)
+
+	void printTicketDetails(Ticket ticket)
 	{
 		string objectEventType = "movie";
 		string ticketDetail = " TICKET DETAIL ";

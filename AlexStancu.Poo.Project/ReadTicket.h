@@ -20,7 +20,7 @@ class ReadTicket
 
 
 
-	void checkTicketValidity(CreateTicket ticket)
+	void checkTicketValidity(int id)
 	{
 		if (receivedTicketID == actualID)
 		{
@@ -29,7 +29,7 @@ class ReadTicket
 
 	}
 
-	void printTicketDetails(CreateTicket ticket)
+	void printTicketDetails(int id)
 	{
 		string objectEventType= "movie";
 		string ticketDetail= " TICKET DETAIL ";
