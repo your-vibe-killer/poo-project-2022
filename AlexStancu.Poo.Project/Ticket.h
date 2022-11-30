@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-class Ticket
+class CreateTicket
 {
 private:
 
@@ -32,38 +32,129 @@ private:
 public:
 
 
-	Ticket():id(0)
+	CreateTicket():id(0)
+	{
+
+	}
+
+
+	CreateTicket(char eventType, const char eventName, string eventCategory, int row, int seat) :id(0)
+	{
+
+	}
+
+
+	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
+	//{
+
+
+	//}
+
+	~CreateTicket()
 	{
 
 	}
 
 
 
-	/*Ticket():id(++ID)
+	void printTicketDetails(CreateTicket ticket)
 	{
-
-
-	}*/
-
-	~Ticket()
-	{
-
-	}
-
-
-	int createRandomId()
-	{
-		int i = 0;
-		while (i++ < 10) {
-			int r = (rand() % 100) + 1;
-			cout << r << " ";
+		string objectEventType = "movie";
+		string ticketDetail = " TICKET DETAIL ";
+		cout << "-                                          -\n";
+		cout << "-Ticket Details:                           -\n";
+		cout << "-                                          -\n";
+		if (objectEventType == "movie")
+		{
+			cout << "-                                          -\n";
+			cout << "-Movie name:                               -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Movie category:                           -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Stand row:                                -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Row seat number:                          -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-UNIQUE ID:                                -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "____________________________________________\n";
 		}
-		return 0;
+		else if (objectEventType == "music")
+		{
+			cout << "-                                          -\n";
+			cout << "-Theatrical piece name:                    -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Theatre category:                         -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Stand row:                                -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Row seat number:                          -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-UNIQUE ID:                                -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "____________________________________________\n";
+
+		}
+		else if (objectEventType == "football")
+		{
+			cout << "-                                          -\n";
+			cout << "-Match name:                               -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Event stand:                              -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Stand row:                                -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-Row seat number:                          -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "-UNIQUE ID:                                -\n";
+			cout << "-                                          -\n";
+			cout << ticketDetail;
+			cout << "-                                          -\n";
+			cout << "____________________________________________\n";
+		}
+		else
+		{
+			cout << "-                                          -\n";
+			cout << "-        Not a valid event type!           -\n";
+			cout << "-                                          -\n";
+			cout << "____________________________________________\n";
+		}
+
+
+
+
 	}
+
 
 
 
 };
-int Ticket::MAX_NR_SEATS = 50;
-//const int Ticket::ID = 50;
-int Ticket::ID = 1;
+

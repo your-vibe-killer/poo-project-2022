@@ -11,15 +11,20 @@ using namespace std;
 
 class CreateTicket
 {
-	CreateTicket()
+public:
+	/*CreateTicket()
 	{
 
 	}
 
-	//CreateTicket()
-	//{
+	CreateTicket(char eventType, const char* eventName, string eventCategory, int row, int seat)
+	{
 
-	//}
+	}*/
+
+	
+
+	
 
 	~CreateTicket()
 	{

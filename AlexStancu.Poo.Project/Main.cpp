@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 #include "ReadTicket.h"
-#include "CreateTicket.h"
+#include "Ticket.h"
 #include <vector>
 #include <fstream>
 
@@ -18,7 +18,8 @@ int main(int argc, char* argv[]) {
 	menu.printMainMenu();
 	menu.getOptionFomKeyboard();
 
+	
 
-
+	//return 0;
 
 }

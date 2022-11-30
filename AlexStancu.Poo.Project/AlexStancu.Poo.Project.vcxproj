@@ -142,7 +142,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CreateTicket.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="ReadTicket.h" />
     <ClInclude Include="Ticket.h" />
