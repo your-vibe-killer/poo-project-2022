@@ -48,8 +48,10 @@ public:
 		
 		string mainMenuOption = "";
 
-		char eventType[10] = "";
+		//char eventType[10] = "";
+		string initialEventType;
 		char* eventName = new char[strlen("tHISISTHELONGESTNAMEIGUESS") + 1];
+		string initialEventName;
 		string eventCategory = "";
 		int row = 0;
 		int seatNr = 0;
@@ -69,8 +71,13 @@ public:
 			cout << "---------- Create a new Ticket:------------\n";
 			cout << "-Event type: (movie, music, football)      -\n";
 			cout << "-                                          -\n";
-			cin >> eventType;
-			if (eventType == "movie")
+			cin >> initialEventType;
+			//int initialStringLength = initialEventType.length();
+			char eventType[50 + 1];
+			strcpy_s(eventType, initialEventType.c_str());
+
+
+			if (initialEventType == "movie")
 			{
 				cout << "-                                          -\n";
 				cout << "-Insert movie name:                        -\n";
@@ -88,12 +95,13 @@ public:
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				Ticket movieTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
+				//Ticket movieTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
+				Ticket movieTicket(char eventType, string eventCategory, int row, int seat);
 				//ticketList[i]= movieTicket;
 				//movieTicket.addTicketIdToList();
 
 			}
-			else if (eventType == "music")
+			else if (initialEventType == "music")
 			{
 				cout << "-                                          -\n";
 				cout << "-Insert theatrical piece name:             -\n";
@@ -114,7 +122,7 @@ public:
 				Ticket musicTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
 
 			}
-			else if (eventType == "football")
+			else if (initialEventType == "football")
 			{
 				cout << "-                                          -\n";
 				cout << "-Insert match name:                        -\n";
@@ -152,8 +160,8 @@ public:
 			cout << "           Insert UNIQUE ID:   ";
 
 			cin >> uniqueId;
-			ReadTicket readTicket;
-			readTicket.checkTicketValidity(uniqueId);
+			//ReadTicket readTicket;
+			//readTicket.checkTicketValidity(uniqueId);
 
 			if (uniqueId == 0)
 			{

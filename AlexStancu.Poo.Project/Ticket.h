@@ -4,6 +4,7 @@
 #include <string>
 #include <stdio.h>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class Ticket
@@ -38,20 +39,20 @@ public:
 	}
 
 
-	Ticket( char eventType[], const char eventName, string eventCategory, int row, int seat) :id(ID++)
-	{
-		//char* eventType = new char[strlen(eventType) + 1];
+	//Ticket( char eventType[], const char eventName, string eventCategory, int row, int seat) :id(ID++)
+	//{
+	//	//char* eventType = new char[strlen(eventType) + 1];
 
-		strcpy_s(this->eventType, eventType);
-		this->eventCategory = eventCategory;
-		this->row = row;
-		this->seat = seat;
+	//	strcpy_s(this->eventType, eventType);
+	//	this->eventCategory = eventCategory;
+	//	this->row = row;
+	//	this->seat = seat;
 
-		cout << "row: " << row ;
-		cout << "seat: " <<seat;
-	}
+	//	cout << "row: " << row ;
+	//	cout << "seat: " <<seat;
+	//}
 
-	Ticket(char eventType[], string eventCategory, int row, int seat) :id(ID++)
+	Ticket( char* eventType, string eventCategory, int row, int seat) :id(ID++)
 	{
 
 		strcpy_s(this->eventType, eventType);
@@ -64,6 +65,8 @@ public:
 		cout << "row: " << row;
 		cout << "seat: " << seat;
 	}
+
+
 
 	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
 	//{
@@ -78,8 +81,52 @@ public:
 
 	void addTicketIdToList()
 	{
+
 		//create a txt with id s, add in it the id
+
+		fstream file; //object of fstream class
+		char text[200];
+
+		ofstream of;
+		fstream f;
+
+		// opening file using ofstream
+		of.open("ExistingTicketsList.txt", ios::app);
+		if (!of)
+			cout << "No such file found";
+		else {
+			cout << "-                                          -\n";
+			cout << "ID TO BE ADDED: ";
+			cin >> text;
+			of << text<<endl;
+			cout << "-                                          -\n";
+			cout << "-Data appended successfully                -\n";
+			cout << "-                                          -\n";
+			cout << "____________________________________________\n";
+			of.close();
+			string word;
+
+			// opening file using fstream
+			f.open("ExistingTicketsList.txt");
+			cout << endl;
+			cout << endl;
+			cout << "-List of ID's:                             -\n";
+			cout << "-                                          -\n";
+			while (f >> word) {
+				cout << word << " ";
+			}
+			cout << endl;
+			cout << "-                                          -\n";
+			cout << "____________________________________________\n";
+			f.close();
+		}
+
 	}
+
+
+
+
+
 
 
 

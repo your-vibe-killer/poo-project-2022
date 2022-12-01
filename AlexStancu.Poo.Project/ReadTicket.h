@@ -1,6 +1,7 @@
 #pragma once
 #include <exception>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <stdio.h>
 #include <vector>
@@ -20,12 +21,33 @@ class ReadTicket
 
 
 
-	void checkTicketValidity(int id)
+	void checkTicketValidity()
 	{
-		if (receivedTicketID == actualID)
-		{
-			//printTicketDetails(CreateTicket ticket);
-		}
+			string line;
+			bool isValid = false;
+			ifstream ticketFile("ExistingTicketsList.txt", ios_base::in);
+			getline(ticketFile, line);
+
+			while (!ticketFile.eof())
+			{
+
+				do {
+					if (line == "BBB") {    //our id
+						//this->tableExists = 1;
+						isValid = true;
+						cout << "-                                          -\n";
+						cout << "It is a valid ID!";
+						cout << "-                                          -\n";
+						cout << "____________________________________________\n";
+					}
+				} while (getline(ticketFile, line, '\n') && (isValid == true));  //DOESN T WORK ON LAST LINE
+
+
+
+			}
+
+			ticketFile.close();
+
 
 	}
 

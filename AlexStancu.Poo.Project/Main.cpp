@@ -17,6 +17,10 @@ int main(int argc, char* argv[]) {
 	MainMenu menu;
 	menu.printMainMenu();
 	menu.getOptionFomKeyboard();
+    Ticket ticket;
+	ticket.addTicketIdToList();
+	ReadTicket readTicket;
+	readTicket.checkTicketValidity();
 
 	
 
