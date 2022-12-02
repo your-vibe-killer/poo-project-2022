@@ -21,24 +21,37 @@ class ReadTicket
 
 
 
-	void checkTicketValidity()
+	int checkTicketValidity()
 	{
 			string line;
+			string receivedId;
+			//string insertedId;
 			bool isValid = false;
 			ifstream ticketFile("ExistingTicketsList.txt", ios_base::in);
 			getline(ticketFile, line);
 
+			cout << "Please insert the Id you want to check: " << endl;
+			cin >> receivedId;
 			while (!ticketFile.eof())
 			{
 
 				do {
-					if (line == "BBB") {    //our id
+					if (line == receivedId) {    //our id
 						//this->tableExists = 1;
 						isValid = true;
 						cout << "-                                          -\n";
 						cout << "It is a valid ID!";
 						cout << "-                                          -\n";
 						cout << "____________________________________________\n";
+						return 0;
+					}
+					else
+					{
+						cout << "-                                          -\n";
+						cout << "NOT a valid ID!";
+						cout << "-                                          -\n";
+						cout << "____________________________________________\n";
+						return 0;
 					}
 				} while (getline(ticketFile, line, '\n') && (isValid == true));  //DOESN T WORK ON LAST LINE
 
@@ -51,6 +64,8 @@ class ReadTicket
 
 	}
 
+
+	//do we need it yet?
 	void printTicketDetails(int id)
 	{
 		string objectEventType= "movie";

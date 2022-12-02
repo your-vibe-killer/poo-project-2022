@@ -108,7 +108,7 @@ public:
 		return this->seat;
 	}
 
-	const int getIdExamen()
+	const int getId()
 	{
 		return this->id;
 	}
@@ -137,16 +137,11 @@ public:
 			}
 			this->eventName = new char[strlen(eventName) + 1];
 			strcpy(this->eventName, eventName);
-
-
-
 		}
 		else
 		{
 			cout << "Name is too short or too long";
 		}
-	
-
 	}
 
 	void setEventCategory(string eventCategory)
@@ -262,14 +257,12 @@ public:
 
 
 
-	void addTicketIdToList()
+	void addTicketIdToList(int id)
 	{
 
 		//create a txt with id s, add in it the id
 
 		fstream file; //object of fstream class
-		char text[200];
-
 		ofstream of;
 		fstream f;
 
@@ -279,9 +272,8 @@ public:
 			cout << "No such file found";
 		else {
 			cout << "-                                          -\n";
-			cout << "ID TO BE ADDED: ";
-			cin >> text;
-			of << text<<endl;
+			cout << "Ticket id to be added: "<<id<<endl;
+			of << id<<endl;
 			cout << "-                                          -\n";
 			cout << "-Data appended successfully                -\n";
 			cout << "-                                          -\n";
@@ -311,7 +303,7 @@ public:
 
 
 
-
+	//don t need yet? 
 
 	void printTicketDetails(Ticket ticket)
 	{

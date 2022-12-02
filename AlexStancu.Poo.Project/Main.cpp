@@ -16,12 +16,14 @@ int main(int argc, char* argv[]) {
 
 	MainMenu menu;
 	menu.printMainMenu();
-	menu.getOptionFomKeyboard();
-    Ticket ticket;
-	cout << ticket;
-	ticket.addTicketIdToList();
-	ReadTicket readTicket;
-	readTicket.checkTicketValidity();
+	//menu.getOptionFomKeyboard();
+    //Ticket ticket;
+	//cout << ticket;
+	//cin >> ticket;
+	//ticket.addTicketIdToList(ticket.getId());
+	//cout<<"ID: "<<ticket.getId()<<endl;
+	//ReadTicket readTicket;
+	//readTicket.checkTicketValidity();
 
 	
 
