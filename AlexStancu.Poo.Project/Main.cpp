@@ -18,6 +18,7 @@ int main(int argc, char* argv[]) {
 	menu.printMainMenu();
 	menu.getOptionFomKeyboard();
     Ticket ticket;
+	cout << ticket;
 	ticket.addTicketIdToList();
 	ReadTicket readTicket;
 	readTicket.checkTicketValidity();

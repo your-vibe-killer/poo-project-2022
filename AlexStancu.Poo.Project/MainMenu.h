@@ -64,6 +64,13 @@ public:
 
 		int uniqueId;  //only need it for reading?
 
+
+
+
+
+
+
+
 		cout << "             (Write 1 or 2 or 3): ";
 		cout << "                                            \n";
 		cout << "                                            \n";
@@ -72,6 +79,9 @@ public:
 		switch (stoi(mainMenuOption)) {
 		case 1:
 		{
+
+
+
 			cout << "---------- Create a new Ticket:------------\n";
 			cout << "-Event type: (movie, music, football)      -\n";
 			cout << "-                                          -\n";
@@ -205,8 +215,93 @@ public:
 		//return ticket;
 
 	}
+	//operatori op<< si op>>:
+	
+	//friend ofera accesul la atributele private fara sa aiba pointerul this
+	//friend il folosim cand avem nevoie de un operator ce are nevoie de 2 termeni (stanga, dreapta iar 
+	//cel din stanga nu este de celo clasic! ex: cout<<e1; cin>>e2; e1=44+e2;
+
+	friend ostream& operator<<(ostream& out, Ticket& ticket);
+	friend istream& operator>>(istream& is, Ticket& ticket);
+
+
+	
 
 };
+
+ostream& operator<<(ostream& out, Ticket& ticket)
+{
+	cout << "-------------Operator<<---------------- ----\n";
+	cout << "-                                          -\n";
+	cout << " Ev type:"<<endl;
+	out << ticket.getEventType()<<endl;
+	cout << " Ev name:" << endl;
+	out << ticket.getEventName()<<endl;
+	cout << " Ev category:" << endl;
+	out << ticket.getEventCategory()<<endl;
+	cout << " Ev row:" << endl;
+	out << ticket.getRow()<<endl;
+	cout << " Ev seat:" << endl;
+	for (int i = 0; i < ticket.getRow(); i++)
+	{
+		out << ticket.getSeat()[i]<<endl;
+	}
+;
+	cout << "-                                          -\n";
+	cout << "--------------------------------------------\n";
+	out << endl;
+	return out;
+}
+
+//la op >> treb sa dezalocam prima data
+
+istream& operator>>(istream& in, Ticket& ticket)
+{
+	if (ticket.getEventName() != nullptr)
+	{
+		delete[]ticket.getEventName();  //???
+	}
+
+	if (ticket.getSeat() != nullptr)
+	{
+		delete[]ticket.getEventName();  //??
+	}
+
+
+	cout << "-------------Operator>>---------------- ----\n";
+	cout << "-                                          -\n";
+	cout << " Ev type:" << endl;
+	char aux[250];
+	in >> aux;
+	ticket.getEventType() = new char[strlen(aux) + 1];
+	strcpy(ticket.getEventType(), aux);
+	out << ticket.getEventType() << endl;
+	cout << " Ev name:" << endl;
+	out << ticket.getEventName() << endl;
+	cout << " Ev category:" << endl;
+	out << ticket.getEventCategory() << endl;
+	cout << " Ev row:" << endl;
+	out << ticket.getRow() << endl;
+	cout << " Ev seat:" << endl;
+	for (int i = 0; i < ticket.getRow(); i++)
+	{
+		out << ticket.getSeat()[i] << endl;
+	}
+
+
+	//is >> ticket.getEventType();
+	//is >> ticket.setEvnetName();
+
+	//is >> ticket.setEvnetName() >> " " << ticket.getRow();
+	//is >> ticket.setEvnetName() >> " " << ticket.getSeat();
+
+	//is >> ticket.setEvnetName() >> " " << ticket.getEventName();
+
+
+	//is >> ticket.setEvnetName();
+	//is >> ticket.date >> evn.name;
+	return is;
+}
 
 
 

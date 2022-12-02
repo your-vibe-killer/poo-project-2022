@@ -16,7 +16,6 @@ private:
 	const int id;
 
 	string eventType="";
-	//char eventType[10] = "";
 	char* eventName = nullptr;
 	string eventCategory = "";
 	int nrRow = 0;
@@ -37,12 +36,12 @@ public:
 
 	Ticket() :id(0)
 	{
-		this->eventType = "Unknown";
-		this->eventName = new char[strlen("Unknown") + 1];
-		strcpy(this->eventName, eventName);
-		this->eventCategory = "Unknown";
-		this->nrRow = 0;
-		this->seat = nullptr;
+		this->eventType = "Unknown"; //ok
+		this->eventName = new char[strlen("Unknown") + 1]; //ok
+		strcpy(this->eventName, "Unknown"); //ok
+		this->eventCategory = "Unknown"; //ok
+		this->nrRow = 0;  //ok
+		this->seat = NULL; //ok?
 
 	}
 
@@ -64,7 +63,7 @@ public:
 		cout << "seat: " << *seat;
 	}
 
-	Ticket(const char* eventName, string eventCategory, int nrRow, int* seat) :id(ID++)
+	/*Ticket(const char* eventName, string eventCategory, int nrRow, int* seat) :id(ID++)
 	{
 		this->eventName = new char[strlen(this->eventName) + 1];
 		strcpy(this->eventName, eventName);
@@ -80,7 +79,7 @@ public:
 		cout << "Category: " << eventCategory;
 		cout << "row: " << nrRow;
 		cout << "seat: " << *seat;
-	}
+	}*/
 
 	string getEventType()
 	{
@@ -116,6 +115,18 @@ public:
 
 	//SETTERI:
 
+	void setEventType(string eventType)
+	{
+		if (eventType.length() > 2 && eventType.length() < 25)   // msa zicem ca este movie sau fotbal
+		{
+			this->eventType = eventType;
+		}
+		else
+		{
+			cout << "Name is too short or too long";
+		}
+	}
+
 	void setEvnetName(const char* eventName)
 	{
 		if (strlen(eventName) > 2 && strlen(eventName) < 25)
@@ -138,7 +149,7 @@ public:
 
 	}
 
-	void setEventCategory()
+	void setEventCategory(string eventCategory)
 	{
 		if (eventCategory.length() > 2 && eventCategory.length() < 25)
 		{
