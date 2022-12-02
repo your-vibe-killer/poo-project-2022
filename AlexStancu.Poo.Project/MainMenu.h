@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <exception>
 #include <iostream>
@@ -48,17 +49,20 @@ public:
 		
 		string mainMenuOption = "";
 
-		//char eventType[10] = "";
-		string initialEventType;
-		char* eventName = new char[strlen("tHISISTHELONGESTNAMEIGUESS") + 1];
-		string initialEventName;
+
+
+
+		string eventType;
+		char* eventName = new char[strlen("aaaaaaaaaaaaaaaaaaaaaaaaa") + 1];
 		string eventCategory = "";
 		int row = 0;
-		int seatNr = 0;
+		int* seat = 0;
+
+
 		int isSeatTaken[5][10];   //0/1 if seat is taken - like a map
 		//bool isSeatTaken=false;
+
 		int uniqueId;  //only need it for reading?
-		//int* 
 
 		cout << "             (Write 1 or 2 or 3): ";
 		cout << "                                            \n";
@@ -71,13 +75,15 @@ public:
 			cout << "---------- Create a new Ticket:------------\n";
 			cout << "-Event type: (movie, music, football)      -\n";
 			cout << "-                                          -\n";
-			cin >> initialEventType;
+			cin >> eventType;
 			//int initialStringLength = initialEventType.length();
-			char eventType[50 + 1];
-			strcpy_s(eventType, initialEventType.c_str());
 
 
-			if (initialEventType == "movie")
+			//char eventType[50 + 1];
+			//strcpy_s(eventType, initialEventType.c_str());
+
+
+			if (eventType == "movie")
 			{
 				cout << "-                                          -\n";
 				cout << "-Insert movie name:                        -\n";
@@ -90,18 +96,18 @@ public:
 				cin >> row;
 				cout << "-                                          -\n";
 				cout << "-Row seat number: (1 ...  10)              -\n";
-				cin >> seatNr;
+				//cin >> seat;
 				cout << "-                                          -\n";
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				//Ticket movieTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
-				Ticket movieTicket(char eventType, string eventCategory, int row, int seat);
+				Ticket movieTicket(string eventType, char* eventName, string eventCategory, int row, int* seat);
+				//Ticket movieTicket(char eventType, string eventCategory, int nrRow, int* seat);
 				//ticketList[i]= movieTicket;
 				//movieTicket.addTicketIdToList();
 
 			}
-			else if (initialEventType == "music")
+			else if (eventType == "music")
 			{
 				cout << "-                                          -\n";
 				cout << "-Insert theatrical piece name:             -\n";
@@ -114,15 +120,15 @@ public:
 				cin >> row;
 				cout << "-                                          -\n";
 				cout << "-Row seat number: (1 ...  50)              -\n";
-				cin >> seatNr;
+				//cin >> seat;
 				cout << "-                                          -\n";
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				Ticket musicTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
+				Ticket musicTicket(string eventType, char* eventName, string eventCategory, int row, int* seat);
 
 			}
-			else if (initialEventType == "football")
+			else if (eventType == "football")
 			{
 				cout << "-                                          -\n";
 				cout << "-Insert match name:                        -\n";
@@ -135,12 +141,13 @@ public:
 				cin >> row;
 				cout << "-                                          -\n";
 				cout << "-Row seat number: (1 ...  50)              -\n";
-				cin >> seatNr;
+				//cin >> seat;
 				cout << "-                                          -\n";
 				cout << "-UNIQUE ID:  SDAF76T34VGC                  -\n";
 				cout << "-                                          -\n";
 				cout << "____________________________________________\n";
-				Ticket footballTicket(char eventType, char* eventName, string eventCategory, int row, int seat);
+				Ticket footballTicket(string eventType, char* eventName, string eventCategory, int row, int* seat);
+
 			}
 			else
 			{
@@ -197,8 +204,6 @@ public:
 
 		//return ticket;
 
-		 //https://www.geeksforgeeks.org/array-of-objects-in-c-with-examples/
-		 //make an array of objects c++ example
 	}
 
 };

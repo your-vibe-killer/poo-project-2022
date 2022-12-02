@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <exception>
 #include <iostream>
@@ -7,20 +8,21 @@
 #include <fstream>
 using namespace std;
 
+
 class Ticket
 {
 private:
 
 	const int id;
 
-	char eventType[10];
+	string eventType="";
+	//char eventType[10] = "";
 	char* eventName = nullptr;
-	string eventCategory= "";
-	int row;
-	int seat;
+	string eventCategory = "";
+	int nrRow = 0;
+	int* seat=nullptr;
 
-	static int MAX_NR_SEATS;
-	//const static int ID;
+	//static int MAX_NR_SEATS;
 	static int ID;
 
 	//method static??
@@ -33,40 +35,148 @@ private:
 public:
 
 
-	Ticket():id(0)
+	Ticket() :id(0)
 	{
+		this->eventType = "Unknown";
+		this->eventName = new char[strlen("Unknown") + 1];
+		strcpy(this->eventName, eventName);
+		this->eventCategory = "Unknown";
+		this->nrRow = 0;
+		this->seat = nullptr;
 
 	}
 
 
-	//Ticket( char eventType[], const char eventName, string eventCategory, int row, int seat) :id(ID++)
-	//{
-	//	//char* eventType = new char[strlen(eventType) + 1];
-
-	//	strcpy_s(this->eventType, eventType);
-	//	this->eventCategory = eventCategory;
-	//	this->row = row;
-	//	this->seat = seat;
-
-	//	cout << "row: " << row ;
-	//	cout << "seat: " <<seat;
-	//}
-
-	Ticket( char* eventType, string eventCategory, int row, int seat) :id(ID++)
+	Ticket(string eventType, const char* eventName, string eventCategory, int nrRow, int* seat) :id(ID++)
 	{
-
-		strcpy_s(this->eventType, eventType);
+		this->eventType = eventType;
+		this->eventName = new char[strlen(eventName) + 1];
+		strcpy(this->eventName, eventName);
 		this->eventCategory = eventCategory;
-		this->row = row;
-		this->seat = seat;
+		this->nrRow = nrRow;
+		this->seat = new int[this->nrRow];
+		for (int i = 0; i < this->nrRow; i++)
+		{
+			this->seat[i] = seat[i];
+		}
+
+		cout << "row: " << nrRow;
+		cout << "seat: " << *seat;
+	}
+
+	Ticket(const char* eventName, string eventCategory, int nrRow, int* seat) :id(ID++)
+	{
+		this->eventName = new char[strlen(this->eventName) + 1];
+		strcpy(this->eventName, eventName);
+		this->eventCategory = eventCategory;
+		this->nrRow = nrRow;
+		this->seat = new int[this->nrRow];
+		for (int i = 0; i < this->nrRow; i++)
+		{
+			this->seat[i] = seat[i];
+		}
 
 		cout << "Type: " << eventType;
 		cout << "Category: " << eventCategory;
-		cout << "row: " << row;
-		cout << "seat: " << seat;
+		cout << "row: " << nrRow;
+		cout << "seat: " << *seat;
+	}
+
+	string getEventType()
+	{
+		return this->eventType;
 	}
 
 
+	char* getEventName()
+	{
+		return this->eventName;
+	}
+
+	string getEventCategory()
+	{
+		return this->eventCategory;
+	}
+
+	int getRow()
+	{
+		return this->nrRow;
+
+	}
+
+	int* getSeat()
+	{
+		return this->seat;
+	}
+
+	const int getIdExamen()
+	{
+		return this->id;
+	}
+
+	//SETTERI:
+
+	void setEvnetName(const char* eventName)
+	{
+		if (strlen(eventName) > 2 && strlen(eventName) < 25)
+		{
+			if (this->eventName != NULL)
+			{
+				delete[]this->eventName;
+			}
+			this->eventName = new char[strlen(eventName) + 1];
+			strcpy(this->eventName, eventName);
+
+
+
+		}
+		else
+		{
+			cout << "Name is too short or too long";
+		}
+	
+
+	}
+
+	void setEventCategory()
+	{
+		if (eventCategory.length() > 2 && eventCategory.length() < 25)
+		{
+			this->eventCategory = eventCategory;
+		}
+		else
+		{
+			cout << "Name is too short or too long";
+		}
+
+		
+	}
+
+	void setSeat(int nrRow, int* seat)
+	{
+		if (nrRow > 0 && nrRow < 5 && seat!=nullptr)
+		{
+			if (*seat > 0 && *seat < 11)
+			{
+				if (this->seat != NULL)
+				{
+					delete[]this->seat;
+				}
+				this->nrRow = nrRow;
+				this->seat = new int[this->nrRow];
+				for (int i = 0; i < this->nrRow; i++)
+				{
+					this->seat[i] = seat[i];
+				}
+
+			}
+		
+		}
+		else
+		{
+			cout << "Row must be between 1 and 5 and seat between 1 and 10!";
+		}
+	}
 
 	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
 	//{
@@ -76,8 +186,70 @@ public:
 
 	~Ticket()
 	{
+		if (this-> eventName != nullptr)
+		{
+			delete[]this->eventName;
+		}
+
+		if (this->seat!= nullptr)
+		{
+			delete[]this->seat;
+		}
+	}
+
+
+	//constructor de copiere:  Ticket t1= t2;
+
+	Ticket(const Ticket& newTicket) :id(newTicket.ID)
+	{
+		this->eventName = new char[strlen(newTicket.eventName) + 1];
+		strcpy(this->eventName, newTicket.eventName);
+		this->eventCategory = newTicket.eventCategory;
+		this->nrRow = newTicket.nrRow;
+		this->seat = new int[this->nrRow];
+		for (int i = 0; i < this->nrRow; i++)
+		{
+			this->seat[i] = newTicket.seat[i];
+		}
+	}
+
+	//operatorul =   se apeleaza cand avem 2 obiecte existente si vrem sa atribum valorile unuia altuia
+	//operator =  -> destructor + constructor de copiere + return *this + EVITAREA AUTOASIGNARII!!
+
+
+	// se apeleaza pe baza a doua obiecte existente deja
+
+	Ticket& operator=(const Ticket& newTicket)
+	{
+		if (this != &newTicket)
+		{
+			if (this->eventName != nullptr)
+			{
+				delete[]this->eventName;
+			}
+
+			if (this->seat != nullptr)
+			{
+				delete[]this->seat;
+			}
+
+			this->eventName = new char[strlen(newTicket.eventName) + 1];
+			strcpy(this->eventName, newTicket.eventName);
+			this->eventCategory = newTicket.eventCategory;
+			this->nrRow = newTicket.nrRow;
+			this->seat = new int[this->nrRow];
+			for (int i = 0; i < this->nrRow; i++)
+			{
+				this->seat[i] = newTicket.seat[i];
+			}
+
+			return *this;
+		}
+
 
 	}
+
+
 
 	void addTicketIdToList()
 	{
@@ -230,4 +402,9 @@ public:
 
 
 };
+
+ //int Ticket:: MAX_NR_SEATS=50;
+ int Ticket:: ID=0;
+
+
 
