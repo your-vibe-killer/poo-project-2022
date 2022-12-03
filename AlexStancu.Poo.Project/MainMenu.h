@@ -122,15 +122,17 @@ istream& operator>>(istream& in, Ticket& ticket)
 		integerEventType = 3;
 	}
 	 
-	try {
-	
-	}
-	catch (invalid_argument & e)
-	{
-		cout <<"Event type is WRONG";
-	}
 
-	ticket.setEventType(eventType);
+
+	try {
+		ticket.setEventType(eventType);
+	}
+	catch (exception ex)
+	{
+	
+		cout << "Event type is NOT correct. Choose between (movie / music / football) -(THROW)";
+	}
+	
 
 	cout << "-                                          -\n";
 	cout << ticket.getEventType() << endl;
@@ -141,7 +143,18 @@ istream& operator>>(istream& in, Ticket& ticket)
 	in >> eventName;
 	const char* c = new char[(eventName.length()) + 1];
 	c= eventName.c_str();
-	ticket.setEventName(c);
+
+
+
+	try {
+		ticket.setEventName(c);
+	}
+	catch (exception ex)
+	{
+		cout << "Event name is NOT correct. -(THROW) ";
+	}
+
+
 	cout << "-                                          -\n";
 	cout << ticket.getEventName() << endl;
 	cout << "-                                          -\n";
@@ -172,7 +185,14 @@ istream& operator>>(istream& in, Ticket& ticket)
 
 	string eventCategory = "";
 	in >> eventCategory;
-	ticket.setEventCategory(eventCategory);
+	try {
+		ticket.setEventCategory(eventCategory);
+	}
+	catch (exception ex)
+	{
+		cout << "Event CATEGORY is NOT correct. -(THROW) ";
+	}
+
 	cout << "-                                          -\n";
 	cout << ticket.getEventCategory() << endl;
 	cout << "-                                          -\n";
@@ -192,29 +212,58 @@ istream& operator>>(istream& in, Ticket& ticket)
 
 	
 
-	for (int i = 0; i < seatNr; i++)
-	{
-
-		 seat[i]=0;
 	
-		ticket.setSeat(i, seat);
-		seat[seatNr] = seatNr;
-		ticket.setSeat(seatNr, seat);
-
-	}
-
-
-	cout << "Row    Seat taken: " << endl;
-	cout << "-    1 2 3 4 5 6 7 8 9 10" << endl;
-	cout << nrRow<<"\    ";
-
-	for (int i = 1; i <=seatNr; i++)
+	/*	try {*/
+	if (nrRow < 6 && nrRow	>0  && seatNr < 11 && seatNr>0)
 	{
+		for (int i = 0; i < seatNr; i++)
+		{
 
-		
-		cout << seat[i]<< "|";
 
+			seat[i] = 0;
+
+			ticket.setSeat(i, seat);
+			seat[seatNr] = seatNr;
+
+
+		}
+		ticket.setSeat(seatNr, seat);
 	}
+	else
+	{
+		cout << "Wrong values!"<<endl;
+	}
+
+			
+			
+
+			
+
+	/*	}*/
+		//catch (exception ex)
+		//{
+		//	cout << "Event ROW or SEAT NOT corect. -(THROW) ";
+		//}
+
+
+	if (nrRow < 6 && seatNr<11)
+	{
+		cout << "Row    Seat taken: " << endl;
+		cout << "-    1 2 3 4 5 6 7 8 9 10" << endl;
+		cout << nrRow << "\    ";
+
+		for (int i = 1; i <= seatNr; i++)
+		{
+
+
+			cout << seat[i] << "|";
+
+		}
+		cout << endl;
+		cout << "-                                          -\n";
+	}
+
+
 
 
 	//for (int i = 0; i < nrRow; i++)
@@ -224,9 +273,6 @@ istream& operator>>(istream& in, Ticket& ticket)
 	//	ticket.setSeat(nrRow, seat);
 	//	cout << "-                                          -\n";
 	//}
-	cout << endl;
-	cout << "-                                          -\n";
-
 
 	//Ticket movieTicket(string eventType, char* eventName, string eventCategory, int row, int* seat);
 

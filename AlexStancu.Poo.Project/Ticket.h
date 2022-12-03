@@ -111,7 +111,7 @@ public:
 		}
 		else
 		{
-			cout << "PREA SCURT SAU PREA LUNG";
+			throw exception();
 		}
 			
 		
@@ -130,19 +130,57 @@ public:
 		}
 		else
 		{
-			cout << "Name is too short or too long";
+			throw exception();
 		}
 	}
 
 	void setEventCategory(string eventCategory)
 	{
+
 		if (eventCategory.length() > 2 && eventCategory.length() < 25)
 		{
-			this->eventCategory = eventCategory;
+			if (eventType == "movie")
+			{
+				if (eventCategory == "Normal" || eventCategory == "VIP")
+				{
+					this->eventCategory = eventCategory;
+
+				}
+				else
+				{
+					throw exception();
+				}
+			}else
+				if (eventType == "music")
+				{
+					if (eventCategory == "Category1" || eventCategory == "Category2" || eventCategory == "Box")
+					{
+						this->eventCategory = eventCategory;
+
+					}
+					else
+					{
+						throw exception();
+					}
+				}else
+					if (eventType == "football")
+					{
+						if (eventCategory == "Stand1" || eventCategory == "Stand2")
+						{
+							this->eventCategory = eventCategory;
+
+						}
+						else
+						{
+							throw exception();
+						}
+					}
+
 		}
+
 		else
 		{
-			cout << "Name is too short or too long";
+			throw exception();
 		}
 
 		
@@ -150,8 +188,8 @@ public:
 
 	void setSeat(int nrRow, int* seat)
 	{
-		if (nrRow > 0 && nrRow <=5 && seat != NULL)
-		{
+		//if (nrRow >= 0 && nrRow <=6 && seat != NULL)
+		//{
 					
 				if (this->seat != NULL)
 				{
@@ -162,18 +200,25 @@ public:
 					this->seat = new int[this->nrRow];
 					for (int i = 0; i < this->nrRow; i++)
 					{
-						if(seat[i]>= 0 && seat[i]<11)
+						if(seat[i]> -1 && seat[i]<=10)
 						{
 							this->seat[i] = seat[i];
+						}
+						else
+						{
+							cout << "SEAT WRONG";
+							//throw exception();
 						}
 
 						
 					}
-		}
-	/*	else
-		{
-			cout << "Row must be between 1 and 5 !";
-		}*/
+		//}
+		//else
+		//{
+			//cout << "Wrong row !";
+		
+
+		//}
 	}
 
 	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
@@ -249,7 +294,7 @@ public:
 
 
 
-	void addTicketIdToList(int id)
+	void addTicketIdToList(int id)           // overload the +OP ?
 	{
 
 		//create a txt with id s, add in it the id
