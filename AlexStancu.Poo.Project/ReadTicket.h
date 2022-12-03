@@ -21,17 +21,17 @@ class ReadTicket
 
 
 
-	int checkTicketValidity()
+	int checkTicketValidity(int id)
 	{
 			string line;
-			string receivedId;
+			string receivedId = to_string(id);
 			//string insertedId;
 			bool isValid = false;
 			ifstream ticketFile("ExistingTicketsList.txt", ios_base::in);
 			getline(ticketFile, line);
 
-			cout << "Please insert the Id you want to check: " << endl;
-			cin >> receivedId;
+			//cout << "Please insert the Id you want to check: " << endl;
+			//cin >> receivedId;
 			while (!ticketFile.eof())
 			{
 

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <vector>
 #include <fstream>
+#include <istream>
 using namespace std;
 
 
@@ -56,30 +57,13 @@ public:
 		this->seat = new int[this->nrRow];
 		for (int i = 0; i < this->nrRow; i++)
 		{
-			this->seat[i] = seat[i];
+			this->seat[i] = 0;
+			this->seat[nrRow] = seat[nrRow];
 		}
 
-		cout << "row: " << nrRow;
-		cout << "seat: " << *seat;
+
 	}
 
-	/*Ticket(const char* eventName, string eventCategory, int nrRow, int* seat) :id(ID++)
-	{
-		this->eventName = new char[strlen(this->eventName) + 1];
-		strcpy(this->eventName, eventName);
-		this->eventCategory = eventCategory;
-		this->nrRow = nrRow;
-		this->seat = new int[this->nrRow];
-		for (int i = 0; i < this->nrRow; i++)
-		{
-			this->seat[i] = seat[i];
-		}
-
-		cout << "Type: " << eventType;
-		cout << "Category: " << eventCategory;
-		cout << "row: " << nrRow;
-		cout << "seat: " << *seat;
-	}*/
 
 	string getEventType()
 	{
@@ -117,17 +101,23 @@ public:
 
 	void setEventType(string eventType)
 	{
-		if (eventType.length() > 2 && eventType.length() < 25)   // msa zicem ca este movie sau fotbal
+		if (eventType.length() > 4 && eventType.length() < 9)   // sa zicem ca este movie sau fotbal
 		{
-			this->eventType = eventType;
+			if (eventType =="movie" || eventType == "music" || eventType == "football")
+			{
+				this->eventType = eventType;
+			}
+		
 		}
 		else
 		{
-			cout << "Name is too short or too long";
+			cout << "PREA SCURT SAU PREA LUNG";
 		}
+			
+		
 	}
 
-	void setEvnetName(const char* eventName)
+	void setEventName(const char* eventName)
 	{
 		if (strlen(eventName) > 2 && strlen(eventName) < 25)
 		{
@@ -160,28 +150,30 @@ public:
 
 	void setSeat(int nrRow, int* seat)
 	{
-		if (nrRow > 0 && nrRow < 5 && seat!=nullptr)
+		if (nrRow > 0 && nrRow <=5 && seat != NULL)
 		{
-			if (*seat > 0 && *seat < 11)
-			{
+					
 				if (this->seat != NULL)
 				{
 					delete[]this->seat;
 				}
-				this->nrRow = nrRow;
-				this->seat = new int[this->nrRow];
-				for (int i = 0; i < this->nrRow; i++)
-				{
-					this->seat[i] = seat[i];
-				}
+							
+					this->nrRow = nrRow;
+					this->seat = new int[this->nrRow];
+					for (int i = 0; i < this->nrRow; i++)
+					{
+						if(seat[i]>= 0 && seat[i]<11)
+						{
+							this->seat[i] = seat[i];
+						}
 
-			}
-		
+						
+					}
 		}
-		else
+	/*	else
 		{
-			cout << "Row must be between 1 and 5 and seat between 1 and 10!";
-		}
+			cout << "Row must be between 1 and 5 !";
+		}*/
 	}
 
 	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
@@ -411,3 +403,4 @@ public:
 
 
 
+  
