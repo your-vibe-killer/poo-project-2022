@@ -12,13 +12,54 @@ using namespace std;
 //we receive an ID, we search in txt for id?/in char matrix for ID
 //if it exists, 
 
-class ReadTicket
-{
-	int receivedTicketID=0;
-	int actualID = 0;
+class ReadTicket {
 
+private:
+	int receivedTicketID=0;
+	
+
+	
 	public:
 
+		ReadTicket()
+		{
+			this->receivedTicketID = 0;
+		}
+
+		ReadTicket(int id)
+		{
+			this->receivedTicketID = id;
+		}
+
+		~ReadTicket()
+		{
+
+		}
+
+		int getId()
+		{
+			return this->receivedTicketID;
+		}
+
+		void setId(int id)
+		{
+			if (id>=0 )
+			{
+				this ->receivedTicketID = id;
+			}
+		}
+
+
+		ReadTicket(const ReadTicket& readticket)
+		{
+			this->receivedTicketID = readticket.receivedTicketID;
+		}
+
+		ReadTicket& operator=(const ReadTicket& readticket)
+		{
+			this->receivedTicketID = readticket.receivedTicketID;
+			return *this;
+		}
 
 
 	int checkTicketValidity(int id)
@@ -32,10 +73,12 @@ class ReadTicket
 
 			//cout << "Please insert the Id you want to check: " << endl;
 			//cin >> receivedId;
+		
 			while (!ticketFile.eof())
 			{
 
 				do {
+				
 					if (line == receivedId) {    //our id
 						//this->tableExists = 1;
 						isValid = true;

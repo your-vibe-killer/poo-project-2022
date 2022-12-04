@@ -28,7 +28,10 @@ int main(int argc, char* argv[]) {
 	{
 		Ticket ticket;
 		cin >> ticket;
+		int id = ticket.getId();
+		ticket + id;
 
+	
 	}
 	break;
 

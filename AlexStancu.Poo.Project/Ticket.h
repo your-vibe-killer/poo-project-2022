@@ -200,25 +200,18 @@ public:
 					this->seat = new int[this->nrRow];
 					for (int i = 0; i < this->nrRow; i++)
 					{
-						if(seat[i]> -1 && seat[i]<=10)
+						if (i == nrRow-1)
 						{
-							this->seat[i] = seat[i];
+							this->seat[i] = nrRow;
 						}
 						else
 						{
-							cout << "SEAT WRONG";
-							//throw exception();
+							this->seat[i] = 0;
 						}
-
-						
+							
+					
 					}
-		//}
-		//else
-		//{
-			//cout << "Wrong row !";
-		
 
-		//}
 	}
 
 	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
@@ -292,13 +285,8 @@ public:
 
 	}
 
-
-
-	void addTicketIdToList(int id)           // overload the +OP ?
+	Ticket operator+(int id)
 	{
-
-		//create a txt with id s, add in it the id
-
 		fstream file; //object of fstream class
 		ofstream of;
 		fstream f;
@@ -309,8 +297,8 @@ public:
 			cout << "No such file found";
 		else {
 			cout << "-                                          -\n";
-			cout << "Ticket id to be added: "<<id<<endl;
-			of << id<<endl;
+			cout << "Ticket id to be added: " << id << endl;
+			of << id << endl;
 			cout << "-                                          -\n";
 			cout << "-Data appended successfully                -\n";
 			cout << "-                                          -\n";
@@ -333,7 +321,51 @@ public:
 			f.close();
 		}
 
+		return *this;
+
 	}
+
+
+	//void addTicketIdToList(int id)           // overload the +OP ?
+	//{
+
+	//	//create a txt with id s, add in it the id
+
+	//	fstream file; //object of fstream class
+	//	ofstream of;
+	//	fstream f;
+
+	//	// opening file using ofstream
+	//	of.open("ExistingTicketsList.txt", ios::app);
+	//	if (!of)
+	//		cout << "No such file found";
+	//	else {
+	//		cout << "-                                          -\n";
+	//		cout << "Ticket id to be added: "<<id<<endl;
+	//		of << id<<endl;
+	//		cout << "-                                          -\n";
+	//		cout << "-Data appended successfully                -\n";
+	//		cout << "-                                          -\n";
+	//		cout << "____________________________________________\n";
+	//		of.close();
+	//		string word;
+
+	//		// opening file using fstream
+	//		f.open("ExistingTicketsList.txt");
+	//		cout << endl;
+	//		cout << endl;
+	//		cout << "-List of ID's:                             -\n";
+	//		cout << "-                                          -\n";
+	//		while (f >> word) {
+	//			cout << word << " ";
+	//		}
+	//		cout << endl;
+	//		cout << "-                                          -\n";
+	//		cout << "____________________________________________\n";
+	//		f.close();
+	//	}
+
+	//}
 
 
 
@@ -438,13 +470,20 @@ public:
 
 	}
 
+	//Ticket operator+(Ticket ticket, string seat)
+	//{
+	//	Location result = loc;
+	//	result.setSeatZone(seat);
 
+	//	return result;
+	//}
 
 
 };
 
  //int Ticket:: MAX_NR_SEATS=50;
  int Ticket:: ID=0;
+
 
 
 

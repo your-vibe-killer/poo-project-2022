@@ -14,18 +14,30 @@ using namespace std;
 class MainMenu {
 
 private:
+	int menuOption = 0;
 
 public:
 	MainMenu()
 	{
-
+		this->menuOption = 0;
 	};
 
-	//MainMenu()
-	//{
+	MainMenu(int menuOption)
+	{
 
-	//	//params
-	//};
+		this->menuOption = menuOption;
+	};
+
+	MainMenu(const MainMenu &mainmenu)
+	{
+		this->menuOption =mainmenu.menuOption;
+	};
+
+	MainMenu &operator=(const MainMenu& mainmenu)
+	{
+	    this->menuOption = mainmenu.menuOption;
+	    return *this;
+	}
 
 	~MainMenu()
 	{
@@ -109,19 +121,6 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << " Insert Event type:   (movie / music / football)" << endl;	
 	string eventType="";
 	in >> eventType;
-	if (eventType=="movie")
-	{
-		integerEventType = 1;
-	}
-	else if (eventType == "music")
-	{
-		integerEventType = 2;
-	}
-	else if (eventType == "football")
-	{
-		integerEventType = 3;
-	}
-	 
 
 
 	try {
@@ -141,13 +140,13 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << " Event name:" << endl;
 	string eventName;
 	in >> eventName;
-	const char* c = new char[(eventName.length()) + 1];
-	c= eventName.c_str();
+	const char* charEventName = new char[(eventName.length()) + 1];
+	charEventName= eventName.c_str();
 
 
 
 	try {
-		ticket.setEventName(c);
+		ticket.setEventName(charEventName);
 	}
 	catch (exception ex)
 	{
@@ -159,45 +158,62 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << ticket.getEventName() << endl;
 	cout << "-                                          -\n";
 
-	
-	switch (integerEventType) {
-	case 1:
+	   //  DACANU AM UN TIP, SI E UNJNOWN NU APARE NASTA!!!!
+	if (eventType == "movie")
 	{
 		cout << " Movie event category:   (Normal / VIP )  -WITHOUT SPACES" << endl;
-		break;
+		string eventCategory = "";
+		in >> eventCategory;
+
+		try {
+			ticket.setEventCategory(eventCategory);
+		}
+		catch (exception ex)
+		{
+			cout << "Event CATEGORY is NOT correct. -(THROW) ";
+		}
+
 	}
-	
-	case 2:
+	else if (eventType == "music")
 	{
 		cout << " Music event category:   (Category1 / Category2 ) -WITHOUT SPACES" << endl;
-		break;
+		string eventCategory = "";
+		in >> eventCategory;
+
+		try {
+			ticket.setEventCategory(eventCategory);
+		}
+		catch (exception ex)
+		{
+			cout << "Event CATEGORY is NOT correct. -(THROW) ";
+		}
+
 	}
-	
-	case 3:
+	else if (eventType == "football")
 	{
 		cout << " Football event category:   (Stand1 / Stand2 ) -WITHOUT SPACES" << endl;
-		break;
+		string eventCategory = "";
+		in >> eventCategory;
+
+		try {
+			ticket.setEventCategory(eventCategory);
+		}
+		catch (exception ex)
+		{
+			cout << "Event CATEGORY is NOT correct. -(THROW) ";
+		}
+
 	}
-	
-	default:
-		break;
+	else
+	{
+		cout << "Event CATEGORY is NOT correct. We don t have an event type! ";
 	}
 
-	string eventCategory = "";
-	in >> eventCategory;
-	try {
-		ticket.setEventCategory(eventCategory);
-	}
-	catch (exception ex)
-	{
-		cout << "Event CATEGORY is NOT correct. -(THROW) ";
-	}
 
 	cout << "-                                          -\n";
 	cout << ticket.getEventCategory() << endl;
 	cout << "-                                          -\n";
 
-	 ////////////////////////////////////////////We ll try to fix the thing under this:///////////////
 	cout << " Event row:" << endl;
 	int nrRow = 0;
 	int seatNr = 0;
@@ -205,40 +221,25 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << "-                                          -\n";
 
 	cout << " Event seat:" << endl;
-	in >> seatNr;
+	in >> seatNr;   //-ACTUAL NR THAT COUNTS
 	cout << "-                                          -\n";
-	
+	delete[]ticket.getSeat();
 	int* seat = new int[seatNr];
 
-	
-
-	
 	/*	try {*/
-	if (nrRow < 6 && nrRow	>0  && seatNr < 11 && seatNr>0)
-	{
-		for (int i = 0; i < seatNr; i++)
+
+
+	/*if (nrRow < 6 && nrRow	>0  && seatNr < 11 && seatNr>0)
+	{*/
+	cout << "-                                          -\n";
+	cout << "Seats:      ";
+		for (int i = 1; i <= seatNr; i++)
 		{
-
-
-			seat[i] = 0;
-
-			ticket.setSeat(i, seat);
-			seat[seatNr] = seatNr;
-
-
+				ticket.setSeat(i, seat);
+		
 		}
-		ticket.setSeat(seatNr, seat);
-	}
-	else
-	{
-		cout << "Wrong values!"<<endl;
-	}
-
-			
-			
-
-			
-
+		cout << endl;
+		cout << "-                                          -\n";
 	/*	}*/
 		//catch (exception ex)
 		//{
@@ -246,35 +247,24 @@ istream& operator>>(istream& in, Ticket& ticket)
 		//}
 
 
-	if (nrRow < 6 && seatNr<11)
-	{
+	//if (nrRow < 6 && seatNr<11)
+	//{
 		cout << "Row    Seat taken: " << endl;
 		cout << "-    1 2 3 4 5 6 7 8 9 10" << endl;
 		cout << nrRow << "\    ";
 
-		for (int i = 1; i <= seatNr; i++)
+		for (int i = 0; i < seatNr; i++)
 		{
 
 
-			cout << seat[i] << "|";
+			cout << ticket.getSeat()[i] << "|";
 
 		}
 		cout << endl;
 		cout << "-                                          -\n";
-	}
-
-
-
-
-	//for (int i = 0; i < nrRow; i++)
-	//{
-
-	//	ticket.setSeat(0, seat);
-	//	ticket.setSeat(nrRow, seat);
-	//	cout << "-                                          -\n";
 	//}
+		
 
-	//Ticket movieTicket(string eventType, char* eventName, string eventCategory, int row, int* seat);
 
 
 	return in;
