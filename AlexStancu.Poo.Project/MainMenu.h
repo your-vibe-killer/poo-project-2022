@@ -50,7 +50,8 @@ public:
 		cout << "-       Please choose an option:           -\n";
 		cout << "-        1. Create a ticket                -\n";
 		cout << "-        2.Read/Check a ticket             -\n";
-		cout << "-        3.EXIT                            -\n";
+		cout << "-        3.See event list                  -\n";
+		cout << "-        4.EXIT                            -\n";
 		cout << "--------------------------------------------\n";
 
 
@@ -99,10 +100,8 @@ ostream& operator<<(ostream& out, Ticket& ticket)
 	cout << " Event row:" << endl;
 	out << ticket.getRow()<<endl;
 	cout << " Event seat:" << endl;
-	for (int i = 0; i < ticket.getRow(); i++)
-	{
-		out << ticket.getSeat()[i]<<endl;
-	}
+	out << ticket.getSeat() << endl;
+	
 ;
 	cout << "-                                          -\n";
 	cout << "--------------------------------------------\n";
@@ -123,14 +122,36 @@ istream& operator>>(istream& in, Ticket& ticket)
 	in >> eventType;
 
 
+
+
 	try {
 		ticket.setEventType(eventType);
 	}
 	catch (exception ex)
 	{
-	
-		cout << "Event type is NOT correct. Choose between (movie / music / football) -(THROW)";
+
+		cout << "Event type is NOT correct. Choose between (movie / music / football) -(Try again)";
+		in >> eventType;
 	}
+
+
+	//while (eventType != "movie" || eventType != "music" || eventType != "football")
+	//{
+	//	try {
+	//		in >> eventType;
+	//		ticket.setEventType(eventType);
+	//		
+	//	}
+	//	catch (exception ex)
+	//	{
+
+	//		cout << "Event type is NOT correct. Choose between (movie / music / football) -(Try again)";
+	//		//in >> eventType;
+	//	}
+
+	//};
+
+
 	
 
 	cout << "-                                          -\n";
@@ -143,6 +164,8 @@ istream& operator>>(istream& in, Ticket& ticket)
 	const char* charEventName = new char[(eventName.length()) + 1];
 	charEventName= eventName.c_str();
 
+	//add ticket.getName() to EventNames.txt
+	//crate ticket.getName().txt;
 
 
 	try {
@@ -216,30 +239,41 @@ istream& operator>>(istream& in, Ticket& ticket)
 
 	cout << " Event row:" << endl;
 	int nrRow = 0;
-	int seatNr = 0;
 	in >> nrRow;
+	ticket.setRow(nrRow);
 	cout << "-                                          -\n";
 
 	cout << " Event seat:" << endl;
+	int seatNr = 0;
 	in >> seatNr;   //-ACTUAL NR THAT COUNTS
 	cout << "-                                          -\n";
-	delete[]ticket.getSeat();
-	int* seat = new int[seatNr];
-
-	/*	try {*/
-
-
-	/*if (nrRow < 6 && nrRow	>0  && seatNr < 11 && seatNr>0)
-	{*/
-	cout << "-                                          -\n";
 	cout << "Seats:      ";
-		for (int i = 1; i <= seatNr; i++)
-		{
-				ticket.setSeat(i, seat);
-		
-		}
-		cout << endl;
-		cout << "-                                          -\n";
+	ticket.setSeat(seatNr);
+	cout << "-                                          -\n";
+
+
+
+
+	//cout << " Event seat:" << endl;
+	//in >> seatNr;   //-ACTUAL NR THAT COUNTS
+	//cout << "-                                          -\n";
+	////delete[]ticket.getSeat();
+	//int* seat = new int[seatNr];
+
+	///*	try {*/
+
+
+	///*if (nrRow < 6 && nrRow	>0  && seatNr < 11 && seatNr>0)
+	//{*/
+	//cout << "-                                          -\n";
+	//cout << "Seats:      ";
+	//	for (int i = 1; i <= seatNr; i++)
+	//	{
+	//			ticket.setSeat(i, seat);
+	//	
+	//	}
+	//	cout << endl;
+	//	cout << "-                                          -\n";
 	/*	}*/
 		//catch (exception ex)
 		//{
@@ -253,18 +287,20 @@ istream& operator>>(istream& in, Ticket& ticket)
 		cout << "-    1 2 3 4 5 6 7 8 9 10" << endl;
 		cout << nrRow << "\    ";
 
-		for (int i = 0; i < seatNr; i++)
+		for (int i = 0; i < seatNr-1; i++)
 		{
 
 
-			cout << ticket.getSeat()[i] << "|";
+			cout <<"0 ";
 
 		}
+		cout << "1";
 		cout << endl;
 		cout << "-                                          -\n";
 	//}
 		
 
+		//Ticket ticketFinal(string eventType, const char* eventName, string eventCategory, int nrRow, int* seat);
 
 
 	return in;

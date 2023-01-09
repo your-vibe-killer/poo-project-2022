@@ -15,6 +15,8 @@ using namespace std;
 class ReadTicket {
 
 private:
+	int* idList;
+	int nrOfIds;
 	int receivedTicketID=0;
 	
 
@@ -66,21 +68,34 @@ private:
 	{
 			string line;
 			string receivedId = to_string(id);
-			//string insertedId;
 			bool isValid = false;
-			ifstream ticketFile("ExistingTicketsList.txt", ios_base::in);
-			getline(ticketFile, line);
+			fstream f;
 
-			//cout << "Please insert the Id you want to check: " << endl;
-			//cin >> receivedId;
-		
-			while (!ticketFile.eof())
-			{
+			f.open("ExistingTicketsList.txt");
+			cout << endl;
+			cout << endl;
+			getline(f, line);
 
-				do {
+			cout << "LINE1: " << line;
+
+			if (line == receivedId) {  
 				
+				cout << "RECEIVED: " << receivedId;
+				isValid = true;
+				cout << "-                                          -\n";
+				cout << "It is a valid ID!";
+				cout << "-                                          -\n";
+				cout << "____________________________________________\n";
+				return 0;
+			}
+			else
+			{
+			
+				while (f >> line) {
+
 					if (line == receivedId) {    //our id
-						//this->tableExists = 1;
+
+						cout << "RECEIVED: " << receivedId;
 						isValid = true;
 						cout << "-                                          -\n";
 						cout << "It is a valid ID!";
@@ -90,21 +105,22 @@ private:
 					}
 					else
 					{
-						cout << "-                                          -\n";
-						cout << "NOT a valid ID!";
-						cout << "-                                          -\n";
-						cout << "____________________________________________\n";
-						return 0;
+						getline(f, line, '\n');
+
 					}
-				} while (getline(ticketFile, line, '\n') && (isValid == true));  //DOESN T WORK ON LAST LINE
 
+				}
 
-
+				if (isValid == false)
+				{
+					cout << "-                                          -\n";
+					cout << "NOT a valid ID!";
+					cout << "-                                          -\n";
+					cout << "____________________________________________\n";
+					return 0;
+				}
 			}
-
-			ticketFile.close();
-
-
+			f.close();
 	}
 
 

@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
 	menu.printMainMenu();
 	int mainMenuOption;
 	int uniqueId;
+	string eventName="";
 
 
 	cout << "             (Write 1 or 2 or 3): ";
@@ -26,10 +27,28 @@ int main(int argc, char* argv[]) {
 	switch (mainMenuOption) {
 	case 1:
 	{
-		Ticket ticket;
-		cin >> ticket;
-		int id = ticket.getId();
-		ticket + id;
+		Ticket mockTicket;
+		cin >> mockTicket;
+
+	
+		//add ticket.getName() to EventNames.txt
+		//crate ticket.getName().txt;
+
+		//mockTicket + id;
+		cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+		//cout << ticket.getEventName() << endl;
+		//cout << ticket.getEventType() << endl;
+		cout << mockTicket.getEventCategory() << endl;
+
+		cout << mockTicket.getRow() << endl;
+		cout << mockTicket.getSeat() << endl;
+		cout << mockTicket.getId() << endl;
+		Ticket ticketFinal(mockTicket.getEventType(), mockTicket.getEventName(), mockTicket.getEventCategory(), mockTicket.getRow(), mockTicket.getSeat());
+		cout << ticketFinal.getId() << endl;
+		int id = ticketFinal.getId();
+		ticketFinal + id;
+		cout << "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
+	
 
 	
 	}
@@ -50,13 +69,39 @@ int main(int argc, char* argv[]) {
 	break;
 
 	case 3:
-		cout << "---------------Exited-----------------------\n";
+	{
+		cout << "----------Show event list:------------------\n";
 		cout << "-                                          -\n";
+		// open EventNames.txt
+		// show content
+		cout << "-                                          -\n";
+		cout << "-             More details:                -\n";
+		cout << "Write event name and add `.txt`, like this example: `theEventName.txt`\n";
+		cin >> eventName;
+		//open specific file
+		//show content
+	
+		
 		cout << "-                                          -\n";
 		cout << "--------------------------------------------\n";
-		break;
+		
 
 	}
+	break;
+
+	case 4:
+	{	cout << "---------------Exited-----------------------\n";
+	cout << "-                                          -\n";
+	cout << "-                                          -\n";
+	cout << "--------------------------------------------\n";
+	
+	}
+	break;
+	
+
+
+
+}
 
 
 

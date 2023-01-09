@@ -7,6 +7,7 @@
 #include <vector>
 #include <fstream>
 #include <istream>
+#include <sstream>
 using namespace std;
 
 
@@ -20,7 +21,7 @@ private:
 	char* eventName = nullptr;
 	string eventCategory = "";
 	int nrRow = 0;
-	int* seat=nullptr;
+	int seat=0;
 
 	//static int MAX_NR_SEATS;
 	static int ID;
@@ -42,24 +43,22 @@ public:
 		strcpy(this->eventName, "Unknown"); //ok
 		this->eventCategory = "Unknown"; //ok
 		this->nrRow = 0;  //ok
-		this->seat = NULL; //ok?
+		this->seat = 0; //ok?
+		cout << "DEFAULT CTOR \n";
 
 	}
 
 
-	Ticket(string eventType, const char* eventName, string eventCategory, int nrRow, int* seat) :id(ID++)
+	Ticket(string eventType, const char* eventName, string eventCategory, int nrRow, int seat) :id(ID++)
 	{
 		this->eventType = eventType;
 		this->eventName = new char[strlen(eventName) + 1];
 		strcpy(this->eventName, eventName);
 		this->eventCategory = eventCategory;
 		this->nrRow = nrRow;
-		this->seat = new int[this->nrRow];
-		for (int i = 0; i < this->nrRow; i++)
-		{
-			this->seat[i] = 0;
-			this->seat[nrRow] = seat[nrRow];
-		}
+		this->seat = seat;
+	
+	cout << "PARAMETER CTOR \n";
 
 
 	}
@@ -87,7 +86,7 @@ public:
 
 	}
 
-	int* getSeat()
+	int getSeat()
 	{
 		return this->seat;
 	}
@@ -186,39 +185,28 @@ public:
 		
 	}
 
-	void setSeat(int nrRow, int* seat)
+	void setSeat(int seat)
 	{
-		//if (nrRow >= 0 && nrRow <=6 && seat != NULL)
-		//{
-					
-				if (this->seat != NULL)
+		
+				if (seat >0 && seat <11 )
 				{
-					delete[]this->seat;
+					this->seat = seat;
 				}
 							
-					this->nrRow = nrRow;
-					this->seat = new int[this->nrRow];
-					for (int i = 0; i < this->nrRow; i++)
-					{
-						if (i == nrRow-1)
-						{
-							this->seat[i] = nrRow;
-						}
-						else
-						{
-							this->seat[i] = 0;
-						}
-							
-					
-					}
 
 	}
 
-	//Ticket(string eventType, string eventName, int row, int seat) :id(++ID)
-	//{
+	void setRow(int nrRow)
+	{
+
+		if (nrRow > 0 && nrRow < 11)
+		{
+			this->nrRow = nrRow;
+		}
 
 
-	//}
+	}
+
 
 	~Ticket()
 	{
@@ -227,10 +215,6 @@ public:
 			delete[]this->eventName;
 		}
 
-		if (this->seat!= nullptr)
-		{
-			delete[]this->seat;
-		}
 	}
 
 
@@ -242,11 +226,8 @@ public:
 		strcpy(this->eventName, newTicket.eventName);
 		this->eventCategory = newTicket.eventCategory;
 		this->nrRow = newTicket.nrRow;
-		this->seat = new int[this->nrRow];
-		for (int i = 0; i < this->nrRow; i++)
-		{
-			this->seat[i] = newTicket.seat[i];
-		}
+		this->seat = newTicket.seat;
+	
 	}
 
 	//operatorul =   se apeleaza cand avem 2 obiecte existente si vrem sa atribum valorile unuia altuia
@@ -264,21 +245,14 @@ public:
 				delete[]this->eventName;
 			}
 
-			if (this->seat != nullptr)
-			{
-				delete[]this->seat;
-			}
+	
 
 			this->eventName = new char[strlen(newTicket.eventName) + 1];
 			strcpy(this->eventName, newTicket.eventName);
 			this->eventCategory = newTicket.eventCategory;
 			this->nrRow = newTicket.nrRow;
-			this->seat = new int[this->nrRow];
-			for (int i = 0; i < this->nrRow; i++)
-			{
-				this->seat[i] = newTicket.seat[i];
-			}
-
+			this->seat = newTicket.seat;
+		
 			return *this;
 		}
 
@@ -287,25 +261,91 @@ public:
 
 	Ticket operator+(int id)
 	{
-		fstream file; //object of fstream class
+
+		string filename = "ExistingTicketsList.txt";
+		ifstream fin;
+
+		fstream file; 
 		ofstream of;
+
+
+		int numberofIds = 0;
+		string word;
+
+
+			// opening file using fstream to see how many ids are
 		fstream f;
+		f.open("ExistingTicketsList.txt");
+		cout << endl;
+		cout << endl;
+		while (f >> word) {
+			numberofIds++;
+			
+		}
+		f.close();
+
+
+		int idList[5000];
+		for (int i = 0; i < numberofIds; i++)
+		{
+			idList[i] = 0;
+		}
+
+
+		f.open("ExistingTicketsList.txt");
+		cout << endl;
+		cout << endl;
+		cout << "-List of ID's:                             -\n";
+		cout << "-                                          -\n";
+		int contor = 0;
+		while (f >> word) {
+				idList[contor] = stoi(word);
+				cout << idList[contor] << " ";
+				contor++;
+
+
+
+		}
+
+
+		cout << endl;
+
+		cout << "____________________________________________\n";
+		f.close();
+
+
+		int max = idList[0]; 
+
+		for (int i = 0; i < contor; i++)
+		{
+			if (idList[i] > max)
+			{
+				max = idList[i];
+			}
+
+		}
+
+		max++;
+
+
 
 		// opening file using ofstream
 		of.open("ExistingTicketsList.txt", ios::app);
 		if (!of)
 			cout << "No such file found";
 		else {
+			// opening file using fstream too see which is the biggest id
+
+
 			cout << "-                                          -\n";
-			cout << "Ticket id to be added: " << id << endl;
-			of << id << endl;
+			cout << "Ticket id to be added: " << max << endl;
+			of << max << endl;
 			cout << "-                                          -\n";
 			cout << "-Data appended successfully                -\n";
 			cout << "-                                          -\n";
 			cout << "____________________________________________\n";
 			of.close();
-			string word;
-
+		
 			// opening file using fstream
 			f.open("ExistingTicketsList.txt");
 			cout << endl;
@@ -319,6 +359,7 @@ public:
 			cout << "-                                          -\n";
 			cout << "____________________________________________\n";
 			f.close();
+			contor++;
 		}
 
 		return *this;
@@ -482,7 +523,7 @@ public:
 };
 
  //int Ticket:: MAX_NR_SEATS=50;
- int Ticket:: ID=0;
+ int Ticket:: ID=1;
 
 
 
