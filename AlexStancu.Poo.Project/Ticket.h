@@ -63,6 +63,10 @@ public:
 
 	}
 
+      
+
+	
+
 
 	string getEventType()
 	{
@@ -192,6 +196,10 @@ public:
 				{
 					this->seat = seat;
 				}
+				else
+				{
+					throw exception();
+				}
 							
 
 	}
@@ -199,9 +207,14 @@ public:
 	void setRow(int nrRow)
 	{
 
-		if (nrRow > 0 && nrRow < 11)
+		if (nrRow > 0 && nrRow < 6)
 		{
 			this->nrRow = nrRow;
+
+		}
+		else
+		{
+			throw exception();
 		}
 
 
@@ -302,8 +315,6 @@ public:
 				idList[contor] = stoi(word);
 				cout << idList[contor] << " ";
 				contor++;
-
-
 
 		}
 

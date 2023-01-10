@@ -51,14 +51,12 @@ public:
 		cout << "-        1. Create a ticket                -\n";
 		cout << "-        2.Read/Check a ticket             -\n";
 		cout << "-        3.See event list                  -\n";
-		cout << "-        4.EXIT                            -\n";
+		cout << "-        4.SECRET                            -\n";
+		cout << "-        5.EXIT                            -\n";
 		cout << "--------------------------------------------\n";
 
 
 	}
-
-
-
 
 	void getOptionFomKeyboard(int option)
 	{
@@ -129,30 +127,19 @@ istream& operator>>(istream& in, Ticket& ticket)
 	}
 	catch (exception ex)
 	{
+		while (eventType != "movie" || eventType != "music" || eventType != "football")
+		{
+			eventType = "";
+			cout << "Event type is NOT correct. Choose between (movie / music / football) -(Try again) \n";		
+			in >> eventType;
 
-		cout << "Event type is NOT correct. Choose between (movie / music / football) -(Try again)";
-		in >> eventType;
+			if (eventType == "movie" || eventType == "music" || eventType == "football")
+			{
+				ticket.setEventType(eventType);
+				break;
+			}				
+		}
 	}
-
-
-	//while (eventType != "movie" || eventType != "music" || eventType != "football")
-	//{
-	//	try {
-	//		in >> eventType;
-	//		ticket.setEventType(eventType);
-	//		
-	//	}
-	//	catch (exception ex)
-	//	{
-
-	//		cout << "Event type is NOT correct. Choose between (movie / music / football) -(Try again)";
-	//		//in >> eventType;
-	//	}
-
-	//};
-
-
-	
 
 	cout << "-                                          -\n";
 	cout << ticket.getEventType() << endl;
@@ -161,6 +148,11 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << " Event name:" << endl;
 	string eventName;
 	in >> eventName;
+
+
+
+
+
 	const char* charEventName = new char[(eventName.length()) + 1];
 	charEventName= eventName.c_str();
 
@@ -173,7 +165,22 @@ istream& operator>>(istream& in, Ticket& ticket)
 	}
 	catch (exception ex)
 	{
-		cout << "Event name is NOT correct. -(THROW) ";
+		//SEARCH IN FILE BEFORE WE DO THIS
+
+		//while (eventType != "movie" || eventType != "music" || eventType != "football")
+		//{
+		//	eventType = "";
+		//	cout << "Event type is NOT correct. Choose between (movie / music / football) -(Try again) \n";
+		//	in >> eventType;
+
+		//	if (eventType == "movie" || eventType == "music" || eventType == "football")
+		//	{
+		//		ticket.setEventType(eventType);
+		//		break;
+		//	}
+		//}
+
+
 	}
 
 
@@ -193,7 +200,19 @@ istream& operator>>(istream& in, Ticket& ticket)
 		}
 		catch (exception ex)
 		{
-			cout << "Event CATEGORY is NOT correct. -(THROW) ";
+			while (eventCategory != "Normal" || eventCategory != "VIP" )
+			{
+				eventCategory = "";
+				cout << "Movie CATEGORY is NOT correct. -THROW (Try again: (Normal / VIP )) \n"; ;
+				in >> eventCategory;
+
+				if (eventCategory == "Normal" || eventCategory == "VIP")
+				{
+					ticket.setEventCategory(eventCategory);
+					break;
+				}
+			}
+
 		}
 
 	}
@@ -208,7 +227,19 @@ istream& operator>>(istream& in, Ticket& ticket)
 		}
 		catch (exception ex)
 		{
-			cout << "Event CATEGORY is NOT correct. -(THROW) ";
+
+			while (eventCategory != "Category1" || eventCategory != "Category2")
+			{
+				eventCategory = "";
+				cout << "Music CATEGORY is NOT correct. -THROW (Try again: (Category1 / Category2 )) \n"; ;
+				in >> eventCategory;
+
+				if (eventCategory == "Category1" || eventCategory == "Category2")
+				{
+					ticket.setEventCategory(eventCategory);
+					break;
+				}
+			}
 		}
 
 	}
@@ -223,9 +254,19 @@ istream& operator>>(istream& in, Ticket& ticket)
 		}
 		catch (exception ex)
 		{
-			cout << "Event CATEGORY is NOT correct. -(THROW) ";
-		}
+			while (eventCategory != "Stand1" || eventCategory != "Stand2")
+			{
+				eventCategory = "";
+				cout << "Football CATEGORY is NOT correct. -THROW (Try again: (Stand1 / Stand2 )) \n"; ;
+				in >> eventCategory;
 
+				if (eventCategory == "Stand1" || eventCategory == "Stand2")
+				{
+					ticket.setEventCategory(eventCategory);
+					break;
+				}
+			}
+		}
 	}
 	else
 	{
@@ -237,52 +278,57 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << ticket.getEventCategory() << endl;
 	cout << "-                                          -\n";
 
-	cout << " Event row:" << endl;
+	cout << " Event row:  (between: 1 .. 5)" << endl;
 	int nrRow = 0;
 	in >> nrRow;
-	ticket.setRow(nrRow);
-	cout << "-                                          -\n";
+	try {
+		ticket.setRow(nrRow);
+		cout << "-                                          -\n";
+	}
+	catch (exception ex)
+	{
 
-	cout << " Event seat:" << endl;
+		while (nrRow<1 || nrRow>5)
+		{
+			nrRow = 0;
+			cout << "Row is wrong. -THROW (Try again: (1 .. 5 )) \n"; ;
+			in >> nrRow;
+
+			if (nrRow > 0 && nrRow<6)
+			{
+				ticket.setRow(nrRow);
+				break;
+			}
+		}
+
+	}
+
+	cout << " Event seat:  (between: 1 .. 10)" << endl;
 	int seatNr = 0;
 	in >> seatNr;   //-ACTUAL NR THAT COUNTS
 	cout << "-                                          -\n";
-	cout << "Seats:      ";
-	ticket.setSeat(seatNr);
+	cout << "Seats:      \n";
+	try {
+		ticket.setSeat(seatNr);
+		cout << "-                                          -\n";
+	}
+	catch (exception ex)
+	{
+		while (seatNr < 1 || seatNr>10)
+		{
+			seatNr = 0;
+			cout << "Seat is wrong. -THROW (Try again: (1 .. 10 )) \n"; ;
+			in >> seatNr;
+
+			if (seatNr > 0 && seatNr < 6)
+			{
+				ticket.setSeat(seatNr);
+				break;
+			}
+		}
+	}
 	cout << "-                                          -\n";
 
-
-
-
-	//cout << " Event seat:" << endl;
-	//in >> seatNr;   //-ACTUAL NR THAT COUNTS
-	//cout << "-                                          -\n";
-	////delete[]ticket.getSeat();
-	//int* seat = new int[seatNr];
-
-	///*	try {*/
-
-
-	///*if (nrRow < 6 && nrRow	>0  && seatNr < 11 && seatNr>0)
-	//{*/
-	//cout << "-                                          -\n";
-	//cout << "Seats:      ";
-	//	for (int i = 1; i <= seatNr; i++)
-	//	{
-	//			ticket.setSeat(i, seat);
-	//	
-	//	}
-	//	cout << endl;
-	//	cout << "-                                          -\n";
-	/*	}*/
-		//catch (exception ex)
-		//{
-		//	cout << "Event ROW or SEAT NOT corect. -(THROW) ";
-		//}
-
-
-	//if (nrRow < 6 && seatNr<11)
-	//{
 		cout << "Row    Seat taken: " << endl;
 		cout << "-    1 2 3 4 5 6 7 8 9 10" << endl;
 		cout << nrRow << "\    ";
