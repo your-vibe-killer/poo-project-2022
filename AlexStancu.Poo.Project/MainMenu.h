@@ -112,6 +112,7 @@ ostream& operator<<(ostream& out, Ticket& ticket)
 istream& operator>>(istream& in, Ticket& ticket)
 {
 	int integerEventType = 0;
+	bool isPremium = false;
 
 	cout << "---------- Create a new Ticket:-------------\n";
 	cout << "-                                          -\n";
@@ -149,10 +150,6 @@ istream& operator>>(istream& in, Ticket& ticket)
 	string eventName;
 	in >> eventName;
 
-
-
-
-
 	const char* charEventName = new char[(eventName.length()) + 1];
 	charEventName= eventName.c_str();
 
@@ -184,6 +181,74 @@ istream& operator>>(istream& in, Ticket& ticket)
 	}
 
 
+
+	//string eventName;
+	//in >> eventName;
+	//const char* charEventName = new char[(eventName.length()) + 1];
+	//charEventName= eventName.c_str();
+
+	////add ticket.getName() to EventNames.txt
+	////crate ticket.getName().txt;
+
+	//bool ok = 0;
+
+	//
+	//	string eventNameString = eventName;
+	//	string eventNameTxt = eventNameString + ".txt";
+	//	FILE* pFile;
+	//	pFile = fopen(eventNameTxt.c_str(), "r");
+	//	if (pFile != NULL)
+	//	{
+	//		cout << "EXISTS";
+	//		ok = 1;
+	//		ticket.setEventName(charEventName);
+	//		fclose(pFile);
+	//	}
+	//	else {		
+	//			while (ok == 0)
+	//			{
+	//				in >> eventName;
+	//				string eventNameString = eventName;
+	//				string eventNameTxt = eventNameString + ".txt";
+
+	//				pFile = fopen(eventNameTxt.c_str(), "r");
+	//				if (pFile != NULL)
+	//				{
+	//					cout << "EXISTS";
+	//					ok = 1;
+	//					ticket.setEventName(charEventName);
+
+	//					fclose(pFile);
+	//				}
+	//				if (ok == 1)
+	//				{
+	//					break;
+	//				}
+	//			}
+
+
+	//		
+
+	//		cout << "Does not exist";
+	//		throw exception();
+
+	//	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	cout << "-                                          -\n";
 	cout << ticket.getEventName() << endl;
 	cout << "-                                          -\n";
@@ -196,7 +261,12 @@ istream& operator>>(istream& in, Ticket& ticket)
 		in >> eventCategory;
 
 		try {
+			if (eventCategory == "VIP")
+			{
+				isPremium = true;
+			}
 			ticket.setEventCategory(eventCategory);
+		
 		}
 		catch (exception ex)
 		{
@@ -208,7 +278,12 @@ istream& operator>>(istream& in, Ticket& ticket)
 
 				if (eventCategory == "Normal" || eventCategory == "VIP")
 				{
+					if (eventCategory == "VIP")
+					{
+						isPremium = true;
+					}
 					ticket.setEventCategory(eventCategory);
+				
 					break;
 				}
 			}
@@ -223,6 +298,10 @@ istream& operator>>(istream& in, Ticket& ticket)
 		in >> eventCategory;
 
 		try {
+			if (eventCategory == "Category2")
+			{
+				isPremium = true;
+			}
 			ticket.setEventCategory(eventCategory);
 		}
 		catch (exception ex)
@@ -236,6 +315,10 @@ istream& operator>>(istream& in, Ticket& ticket)
 
 				if (eventCategory == "Category1" || eventCategory == "Category2")
 				{
+					if (eventCategory == "Category2")
+					{
+						isPremium = true;
+					}
 					ticket.setEventCategory(eventCategory);
 					break;
 				}
@@ -250,6 +333,10 @@ istream& operator>>(istream& in, Ticket& ticket)
 		in >> eventCategory;
 
 		try {
+			if (eventCategory == "Stand2")
+			{
+				isPremium = true;
+			}
 			ticket.setEventCategory(eventCategory);
 		}
 		catch (exception ex)
@@ -262,6 +349,10 @@ istream& operator>>(istream& in, Ticket& ticket)
 
 				if (eventCategory == "Stand1" || eventCategory == "Stand2")
 				{
+					if (eventCategory == "Stand2")
+					{
+						isPremium = true;
+					}
 					ticket.setEventCategory(eventCategory);
 					break;
 				}
@@ -278,30 +369,121 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << ticket.getEventCategory() << endl;
 	cout << "-                                          -\n";
 
-	cout << " Event row:  (between: 1 .. 5)" << endl;
+	if (isPremium == true)
+	{
+		cout << " Event row:  (between: 1 .. 2)" << endl;
+	}
+	else
+	{
+		cout << " Event row:  (between: 3 .. 5)" << endl;
+	}
+	
 	int nrRow = 0;
 	in >> nrRow;
-	try {
-		ticket.setRow(nrRow);
-		cout << "-                                          -\n";
-	}
-	catch (exception ex)
+
+	if ((isPremium == true && nrRow == 1) || (isPremium == true && nrRow == 2))
 	{
 
-		while (nrRow<1 || nrRow>5)
-		{
-			nrRow = 0;
-			cout << "Row is wrong. -THROW (Try again: (1 .. 5 )) \n"; ;
-			in >> nrRow;
+		try {
+			ticket.setPremiumRow(nrRow);
+			cout << "-                                          -\n";
+			cout << "SETPREMIUM- \n";
 
-			if (nrRow > 0 && nrRow<6)
+
+
+		}
+		catch (exception ex)
+		{
+
+			while (nrRow < 1 || nrRow>2)
 			{
-				ticket.setRow(nrRow);
-				break;
+				nrRow = 0;
+				cout << "PREMIUM Row is wrong. -THROW (Try again: (1 .. 2 )) \n"; ;
+				in >> nrRow;
+
+				if (nrRow > 0 && nrRow < 3)
+				{
+					ticket.setPremiumRow(nrRow);
+					cout << "SETPREMIUM- \n";
+					break;
+				}
 			}
+
 		}
 
 	}
+	else
+	{
+		if ((isPremium == true && nrRow != 1) || (isPremium == true && nrRow != 2))
+		{
+
+
+			try {
+				ticket.setPremiumRow(nrRow);
+				cout << "-                                          -\n";
+				cout << "SETPREMIUM- \n";
+
+
+
+			}
+			catch (exception ex)
+			{
+
+				while (nrRow < 1 || nrRow>2)
+				{
+					nrRow = 0;
+					cout << "PREMIUM Row is wrong. -THROW (Try again: (1 .. 2 )) \n"; ;
+					in >> nrRow;
+
+					if (nrRow > 0 && nrRow < 3)
+					{
+						ticket.setPremiumRow(nrRow);
+						cout << "SETPREMIUM- \n";
+						break;
+					}
+				}
+
+			}
+
+
+		}
+		else
+		{
+			try {
+				ticket.setRow(nrRow);
+				cout << "-                                          -\n";
+				cout << "SETNORMAL- \n";
+
+
+			}
+			catch (exception ex)
+			{
+
+				while (nrRow < 3 || nrRow>5)
+				{
+					nrRow = 0;
+					cout << "Row is wrong. -THROW (Try again: (3 .. 5 )) \n"; ;
+					in >> nrRow;
+
+					if (nrRow > 2 && nrRow < 6)
+					{
+						ticket.setRow(nrRow);
+						cout << "SETNORMAL- \n";
+						break;
+					}
+				}
+
+			}
+
+
+
+
+		}
+
+	
+
+	}
+
 
 	cout << " Event seat:  (between: 1 .. 10)" << endl;
 	int seatNr = 0;

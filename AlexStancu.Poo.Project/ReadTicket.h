@@ -64,8 +64,8 @@ private:
 		}
 
 
-	int checkTicketValidity(int id)
-	{
+		int checkTicketValidity(int id)
+		{
 			string line;
 			string receivedId = to_string(id);
 			bool isValid = false;
@@ -76,21 +76,45 @@ private:
 			cout << endl;
 			getline(f, line);
 
-			cout << "LINE1: " << line;
+			if (line == receivedId) {
 
-			if (line == receivedId) {  
-				
 				cout << "RECEIVED: " << receivedId;
 				isValid = true;
 				cout << "-                                          -\n";
 				cout << "It is a valid ID!";
 				cout << "-                                          -\n";
+				cout << "Show ticket details? (y/n) " << endl;
+				char answer;
+				cin >> answer;
+
+				while (answer != 'y' && answer != 'n')
+				{
+					answer = 'a';
+					cout << "Wrong answer, try again! (y or n)" << endl;
+					cin >> answer;
+					if (answer == 'y' || answer == 'n')
+						break;
+				}
+				if (answer == 'y')
+				{
+					Ticket mockTicket;
+					mockTicket.deserialize(stoi(receivedId));
+
+
+				}
+				if (answer == 'n')
+				{
+					cout << "You chose no!" << endl;;
+				}
+
+
+
 				cout << "____________________________________________\n";
 				return 0;
 			}
 			else
 			{
-			
+
 				while (f >> line) {
 
 					if (line == receivedId) {    //our id
@@ -100,8 +124,30 @@ private:
 						cout << "-                                          -\n";
 						cout << "It is a valid ID!";
 						cout << "-                                          -\n";
-						cout << "____________________________________________\n";
-						return 0;
+						cout << "Show ticket details? (y/n) " << endl;
+						char answer;
+						cin >> answer;
+
+						while (answer != 'y' && answer != 'n')
+						{
+							answer = 'a';
+							cout << "Wrong answer, try again! (y or n)" << endl;
+							cin >> answer;
+							if (answer == 'y' || answer == 'n')
+								break;
+						}
+						if (answer == 'y')
+						{
+							Ticket mockTicket;
+							mockTicket.deserialize(stoi(receivedId));
+
+
+						}
+						if (answer == 'n')
+						{
+							cout << "You chose no!" << endl;;
+						}
+
 					}
 					else
 					{
@@ -121,7 +167,7 @@ private:
 				}
 			}
 			f.close();
-	}
+		}
 
 
 	//do we need it yet?

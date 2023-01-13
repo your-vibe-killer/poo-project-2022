@@ -35,6 +35,13 @@ int main(int argc, char* argv[]) {
 			mockTicket.getRow(), mockTicket.getSeat());
 		int id = ticketFinal.getId();
 		ticketFinal + id;
+		int realId= ticketFinal.getRealId();
+		ticketFinal.serialize( realId);
+		cout << endl;
+		cout << "DESERIALIZARE: \n";
+		ticketFinal.deserialize(realId);
+
+		
 
 	
 
@@ -74,7 +81,7 @@ int main(int argc, char* argv[]) {
 		cout << "--------------------------------------------\n";
 		cout << "-             For more details:                -\n";
 
-		cout << "Write event name to see: max seats LEFT, Nr. rows, Seats per row, Time, Location\n";
+		cout << "Write event name to see: max seats, Nr. rows, Seats per row, Time, Location\n";
 		cin >> eventName;
 		f.open(eventName+".txt");
 		cout << endl;
@@ -105,7 +112,7 @@ int main(int argc, char* argv[]) {
 	break;
 
 	case 4:
-	{	cout << "                     ---------------Secret-----------------------\n";
+	{	cout << "                           ---------------Secret-----------------------\n";
 
 
 
@@ -168,21 +175,5 @@ int main(int argc, char* argv[]) {
 	break;
 
 }
-
-
-	// 
-	// 
-	//menu.getOptionFomKeyboard();
-
-	//cout << ticket;
-
-	//ticket.addTicketIdToList(ticket.getId());
-	//cout<<"ID: "<<ticket.getId()<<endl;
-	//ReadTicket readTicket;
-	//readTicket.checkTicketValidity();
-
-	
-
-	//return 0;
 
 }

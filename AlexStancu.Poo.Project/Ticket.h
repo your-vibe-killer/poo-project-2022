@@ -44,7 +44,6 @@ public:
 		this->eventCategory = "Unknown"; //ok
 		this->nrRow = 0;  //ok
 		this->seat = 0; //ok?
-		cout << "DEFAULT CTOR \n";
 
 	}
 
@@ -57,16 +56,7 @@ public:
 		this->eventCategory = eventCategory;
 		this->nrRow = nrRow;
 		this->seat = seat;
-	
-	cout << "PARAMETER CTOR \n";
-
-
 	}
-
-      
-
-	
-
 
 	string getEventType()
 	{
@@ -130,6 +120,7 @@ public:
 			}
 			this->eventName = new char[strlen(eventName) + 1];
 			strcpy(this->eventName, eventName);
+
 		}
 		else
 		{
@@ -207,7 +198,24 @@ public:
 	void setRow(int nrRow)
 	{
 
-		if (nrRow > 0 && nrRow < 6)
+		if (nrRow > 2 && nrRow < 6)
+		{
+			this->nrRow = nrRow;
+
+		}
+		else
+		{
+			throw exception();
+		}
+
+
+	}
+
+
+	void setPremiumRow(int nrRow)
+	{
+
+		if (nrRow > 0 && nrRow < 3)
 		{
 			this->nrRow = nrRow;
 
@@ -377,162 +385,144 @@ public:
 
 	}
 
-
-	//void addTicketIdToList(int id)           // overload the +OP ?
-	//{
-
-	//	//create a txt with id s, add in it the id
-
-	//	fstream file; //object of fstream class
-	//	ofstream of;
-	//	fstream f;
-
-	//	// opening file using ofstream
-	//	of.open("ExistingTicketsList.txt", ios::app);
-	//	if (!of)
-	//		cout << "No such file found";
-	//	else {
-	//		cout << "-                                          -\n";
-	//		cout << "Ticket id to be added: "<<id<<endl;
-	//		of << id<<endl;
-	//		cout << "-                                          -\n";
-	//		cout << "-Data appended successfully                -\n";
-	//		cout << "-                                          -\n";
-	//		cout << "____________________________________________\n";
-	//		of.close();
-	//		string word;
-
-	//		// opening file using fstream
-	//		f.open("ExistingTicketsList.txt");
-	//		cout << endl;
-	//		cout << endl;
-	//		cout << "-List of ID's:                             -\n";
-	//		cout << "-                                          -\n";
-	//		while (f >> word) {
-	//			cout << word << " ";
-	//		}
-	//		cout << endl;
-	//		cout << "-                                          -\n";
-	//		cout << "____________________________________________\n";
-	//		f.close();
-	//	}
-
-	//}
-
-
-
-
-
-
-	//don t need yet? 
-
-	void printTicketDetails(Ticket ticket)
+	int getRealId()
 	{
-		string objectEventType = "movie";
-		string ticketDetail = " TICKET DETAIL ";
-		cout << "-                                          -\n";
-		cout << "-Ticket Details:                           -\n";
-		cout << "-                                          -\n";
-		if (objectEventType == "movie")
-		{
-			cout << "-                                          -\n";
-			cout << "-Movie name:                               -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Movie category:                           -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Stand row:                                -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Row seat number:                          -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-UNIQUE ID:                                -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "____________________________________________\n";
-		}
-		else if (objectEventType == "music")
-		{
-			cout << "-                                          -\n";
-			cout << "-Theatrical piece name:                    -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Theatre category:                         -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Stand row:                                -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Row seat number:                          -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-UNIQUE ID:                                -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "____________________________________________\n";
+		string filename = "ExistingTicketsList.txt";
+		ifstream fin;
+		fstream file;
+		ofstream of;
+
+		int numberofIds = 0;
+		string word;
+
+		// opening file using fstream to see how many ids are
+		fstream f;
+		f.open("ExistingTicketsList.txt");
+		cout << endl;
+		cout << endl;
+		while (f >> word) {
+			numberofIds++;
 
 		}
-		else if (objectEventType == "football")
+		f.close();
+
+		int idList[5000];
+		for (int i = 0; i < numberofIds; i++)
 		{
-			cout << "-                                          -\n";
-			cout << "-Match name:                               -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Event stand:                              -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Stand row:                                -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-Row seat number:                          -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "-UNIQUE ID:                                -\n";
-			cout << "-                                          -\n";
-			cout << ticketDetail;
-			cout << "-                                          -\n";
-			cout << "____________________________________________\n";
+			idList[i] = 0;
+		}
+
+		f.open("ExistingTicketsList.txt");
+		int contor = 0;
+		while (f >> word) {
+			idList[contor] = stoi(word);
+			cout << idList[contor] << " ";
+			contor++;
+
+		}
+		f.close();
+
+		int max = idList[0];
+
+		for (int i = 0; i < contor; i++)
+		{
+			if (idList[i] > max)
+			{
+				max = idList[i];
+			}
+
+		}
+		return max;
+	}
+
+	void serialize(int id) 
+	{
+
+		string fileName = to_string(id) + "ticket";
+
+		ofstream f(fileName, ios::out | ios::binary);
+		//int//
+		f.write((char*)&id, sizeof(id));
+		//char*
+	
+		int nameSize = strlen(this->eventName);
+		f.write((char*)&nameSize, sizeof(nameSize));
+		f.write(this->eventName, nameSize + 1);
+		//string//
+		int eventCategorySize = this->eventCategory.size();
+		f.write((char*)&eventCategorySize, sizeof(eventCategorySize));
+		f.write(this->eventCategory.c_str(), eventCategorySize + 1);
+
+		int eventTypeSize = this->eventType.size();
+		f.write((char*)&eventTypeSize, sizeof(eventTypeSize));
+		f.write(this->eventType.c_str(), eventTypeSize + 1);
+
+		f.write((char*)&this->nrRow, sizeof(this->nrRow));
+		f.write((char*)&this->seat, sizeof(this->seat));
+
+		f.close();
+
+	}
+
+	void deserialize(int id)
+	{
+		cout << "DESERIZED TICKET: " << endl;
+		string fileName = to_string(id) + "ticket";
+		ifstream f(fileName, ios::in | ios::binary);
+		if(f.is_open())
+		{
+			if (this->eventName != NULL)
+			{
+				delete[]this->eventName;
+			}
+
+			//int
+			f.read((char*)&id, sizeof(id));
+			cout << id << endl;
+			//char*
+
+			int nameSize = 0;
+			f.read((char*)&nameSize, sizeof(nameSize));
+			this->eventName = new char[nameSize + 1];
+			f.read(this->eventName, nameSize + 1);
+			cout << eventName << endl;
+			//string//
+			int eventCategorySize = 0;
+			f.read((char*)&eventCategorySize, sizeof(eventCategorySize));
+			char* aux = new char[eventCategorySize + 1];
+			f.read(aux, eventCategorySize + 1);
+			this->eventCategory = aux;
+			cout << eventCategory << endl;
+			delete[] aux;
+
+			int eventTypeSize = 0;
+			f.read((char*)&eventTypeSize, sizeof(eventTypeSize));
+			char* aux2 = new char[eventTypeSize + 1];
+			f.read(aux2, eventTypeSize + 1);
+			this->eventType = aux2;
+			cout << eventType << endl;
+			delete[] aux2;
+
+			f.read((char*)&this->nrRow, sizeof(this->nrRow));
+			cout << nrRow << endl;
+			f.read((char*)&this->seat, sizeof(this->seat));
+			cout << seat << endl;
+			f.close();
+
 		}
 		else
 		{
-			cout << "-                                          -\n";
-			cout << "-        Not a valid event type!           -\n";
-			cout << "-                                          -\n";
-			cout << "____________________________________________\n";
+			cout << "Nu merge deschis fisierul binar!";
 		}
-
-
-
-
+	
 	}
 
 	//Ticket operator+(Ticket ticket, string seat)
 	//{
 	//	Location result = loc;
-	//	result.setSeatZone(seat);
-
-	//	return result;
-	//}
 
 
 };
-
  //int Ticket:: MAX_NR_SEATS=50;
  int Ticket:: ID=1;
 
