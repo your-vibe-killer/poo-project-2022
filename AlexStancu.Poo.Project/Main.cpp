@@ -1,7 +1,8 @@
 #include "MainMenu.h"
 #include "ReadTicket.h"
 #include "Ticket.h"
-#include "TicketWithMessage.h"
+#include "TicketPremium.h"
+#include "Header.h"
 #include <vector>
 #include <fstream>
 #include<string>
@@ -30,41 +31,33 @@ int main(int argc, char* argv[]) {
 	switch (mainMenuOption) {
 	case 1:
 	{
-		char answer='a';
 		Ticket mockTicket;
-		cout << "Do you want to also write a message on ticket?";
-		cin >> answer;
-		while (answer != 'y' && answer != 'n')
+		cin >> mockTicket;
+		
+		if (mockTicket.getRow()==1 || mockTicket.getRow()==2)
 		{
-			answer = 'a';
-			cout << "Wrong answer, try again! (y or n)" << endl;
-			cin >> answer;
-			if (answer == 'y' || answer == 'n')
-				break;
-		}
-		if (answer == 'y')
-		{
-			string message = "";
-			cout << "Input message:" << endl;
-			cin >> message;
-			cout << endl;
-			cin >> mockTicket;
-
-			TicketWithMessage ticketWithMessage(mockTicket.getEventType(), mockTicket.getEventName(), mockTicket.getEventCategory(),
+			string message = "message";
+			TicketPremium ticketPremium(mockTicket.getEventType(), mockTicket.getEventName(), mockTicket.getEventCategory(),
 				mockTicket.getRow(), mockTicket.getSeat(), message);
-			int id = ticketWithMessage.getId();
-			ticketWithMessage + id;
-			int realId = ticketWithMessage.getRealId();
-			ticketWithMessage.serialize(realId);
+			int id = ticketPremium.getId();
+			ticketPremium + id;
+			int realId = ticketPremium.getRealId();
+			ticketPremium.serialize(realId);
 			cout << endl;
 			cout << "DESERIALIZARE: \n";
-			ticketWithMessage.deserialize(realId);
+			ticketPremium.deserialize(realId);
+			Ticket* t1 = new TicketPremium();
+			TicketPremium* tp1 = new TicketPremium();
+			cout << t1->showMessage() << endl;
+			cout << tp1->showMessage() << endl;
+			cout << t1->showMessage2() << endl;
+			cout << tp1->showMessage2() << endl;
+
+			AbstractEx* ex;
 
 
-		}
-		if (answer == 'n')
+		}else
 		{
-			cin >> mockTicket;
 			Ticket ticketFinal(mockTicket.getEventType(), mockTicket.getEventName(), mockTicket.getEventCategory(),
 				mockTicket.getRow(), mockTicket.getSeat());
 			int id = ticketFinal.getId();
@@ -72,14 +65,11 @@ int main(int argc, char* argv[]) {
 			int realId = ticketFinal.getRealId();
 			ticketFinal.serialize(realId);
 			cout << endl;
-			cout << "DESERIALIZARE: \n";
-			ticketFinal.deserialize(realId);
-
-
 
 		}
 
-
+		AbstractEx* ex = new Ticket();
+		AbstractEx* exa = new TicketPremium();
 
 	
 

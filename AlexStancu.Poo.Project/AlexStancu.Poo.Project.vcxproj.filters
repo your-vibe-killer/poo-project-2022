@@ -29,7 +29,10 @@
     <ClInclude Include="Ticket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TicketWithMessage.h">
+    <ClInclude Include="TicketPremium.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

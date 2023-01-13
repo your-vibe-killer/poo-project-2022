@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include "Ticket.h"
+#include "Header.h"
 #include "MainMenu.h"
 #include <exception>
 #include <iostream>
@@ -11,48 +12,62 @@
 #include <fstream>
 #include <istream>
 #include <sstream>
+#include"Header.h"
 using namespace std;
 //using Ticket::opera
 
 
 
 
-class TicketWithMessage: public Ticket
+class TicketPremium: public Ticket
 {
 	string message;  //message from Event Creator
 public:
-	TicketWithMessage():Ticket()
+	TicketPremium():Ticket()
 	{
 		this->message = "Thank you for buying this ticket!";
 	};
 
-	TicketWithMessage(string eventType, const char* eventName, string eventCategory,
+	TicketPremium(string eventType, const char* eventName, string eventCategory,
 		int nrRow, int seat ,string message) :Ticket(eventType, eventName, eventCategory, nrRow, seat)
 	{
 		this->message = message;
 	};
-	TicketWithMessage(const TicketWithMessage& e):Ticket(e)
+	TicketPremium(const TicketPremium& e):Ticket(e)
 	{
 		this->message = e.message;
 	}
-	TicketWithMessage& operator=(const TicketWithMessage& e)
+	TicketPremium& operator=(const TicketPremium& e)
 	{
 		Ticket:: operator=(e);
 		this->message = e.message;
 		return *this;
 	}
-	~TicketWithMessage()
+	~TicketPremium()
 	{
 
 	}
 
-	friend istream& operator>>(istream& in, TicketWithMessage& e)
+	friend istream& operator>>(istream& in, TicketPremium& e)
 	{
 		in >> (Ticket&)e;
 		return in;
 	}
 
-	
+	  string showMessage()override
+	{
+		return "Premium ticket or regular, you ll never know (VIRTUAL METH)" ;
+	}
+
+	  virtual string showMessage2()override
+	  {
+		  return "Another  message (VIRTUAL METH) ";
+	  }
+
+	  float value()
+	  {
+		  return 2;
+	  }
 };
 
 

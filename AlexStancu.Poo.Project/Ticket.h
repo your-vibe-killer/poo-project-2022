@@ -8,10 +8,11 @@
 #include <fstream>
 #include <istream>
 #include <sstream>
+#include "Header.h"
 using namespace std;
 
 
-class Ticket
+class Ticket :public AbstractEx
 {
 private:
 
@@ -464,7 +465,7 @@ public:
 
 	}
 
-	void deserialize(int id)
+	virtual void deserialize(int id)
 	{
 		cout << "DESERIZED TICKET: " << endl;
 		string fileName = to_string(id) + "ticket";
@@ -517,11 +518,23 @@ public:
 	
 	}
 
+	virtual string showMessage()
+	{
+		return "Regular ticket";
+	}
+
+	virtual string showMessage2()
+	{
+		return "A message";
+	}
 	//Ticket operator+(Ticket ticket, string seat)
 	//{
 	//	Location result = loc;
 
-
+	float value()
+	{
+		return 1;
+	}
 };
  //int Ticket:: MAX_NR_SEATS=50;
  int Ticket:: ID=1;
