@@ -1,14 +1,21 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include "Ticket.h"
+#include "MainMenu.h"
 #include <exception>
 #include <iostream>
 #include <string>
 #include <stdio.h>
 #include <vector>
+#include <string>
 #include <fstream>
 #include <istream>
 #include <sstream>
 using namespace std;
+//using Ticket::opera
+
+
+
 
 class TicketWithMessage: public Ticket
 {
@@ -38,13 +45,14 @@ public:
 	{
 
 	}
-	friend ostream& operator<<(ostream& out, TicketWithMessage& e)
-	{
-		//out << (Ticket)e;
 
+	friend istream& operator>>(istream& in, TicketWithMessage& e)
+	{
+		in >> (Ticket&)e;
+		return in;
 	}
 
-
+	
 };
 
 

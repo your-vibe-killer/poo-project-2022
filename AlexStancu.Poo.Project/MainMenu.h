@@ -99,11 +99,9 @@ ostream& operator<<(ostream& out, Ticket& ticket)
 	out << ticket.getRow()<<endl;
 	cout << " Event seat:" << endl;
 	out << ticket.getSeat() << endl;
-	
-;
 	cout << "-                                          -\n";
 	cout << "--------------------------------------------\n";
-	out << endl;
+	cout << endl;
 	return out;
 }
 
@@ -119,8 +117,6 @@ istream& operator>>(istream& in, Ticket& ticket)
 	cout << " Insert Event type:   (movie / music / football)" << endl;	
 	string eventType="";
 	in >> eventType;
-
-
 
 
 	try {

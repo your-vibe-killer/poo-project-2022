@@ -525,8 +525,3 @@ public:
 };
  //int Ticket:: MAX_NR_SEATS=50;
  int Ticket:: ID=1;
-
-
-
-
-  
