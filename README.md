@@ -130,4 +130,4 @@ Row\Seat:
   2.  1 2 3 4 5 6 7 8 9 10  Stand1/VIP/Category1 
   3.  1 2 3 4 5 6 7 8 9 10  Stand2/Normal/Category2
   4.  1 2 3 4 5 6 7 8 9 10  Stand2/Normal/Category2
-  5.  1 2 3 4 5 6 7 8 9 10  Stand2/Normal/Category2  
+  5.  1 2 3 4 5 6 7 8 9 10  Stand2/Normal/Category2 
