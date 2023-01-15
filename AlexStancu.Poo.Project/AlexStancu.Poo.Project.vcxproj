@@ -142,7 +142,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="AbstractEx.h" />
     <ClInclude Include="TicketPremium.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="ReadTicket.h" />

@@ -32,7 +32,7 @@
     <ClInclude Include="TicketPremium.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="AbstractEx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

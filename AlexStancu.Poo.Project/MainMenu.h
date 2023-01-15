@@ -51,7 +51,7 @@ public:
 		cout << "-        1. Create a ticket                -\n";
 		cout << "-        2.Read/Check a ticket             -\n";
 		cout << "-        3.See event list                  -\n";
-		cout << "-        4.SECRET                            -\n";
+		cout << "-        4.SECRET                          -\n";
 		cout << "-        5.EXIT                            -\n";
 		cout << "--------------------------------------------\n";
 
@@ -383,7 +383,6 @@ istream& operator>>(istream& in, Ticket& ticket)
 		try {
 			ticket.setPremiumRow(nrRow);
 			cout << "-                                          -\n";
-			cout << "SETPREMIUM- \n";
 
 
 

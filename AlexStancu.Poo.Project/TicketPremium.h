@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include "Ticket.h"
-#include "Header.h"
+#include "AbstractEx.h"
 #include "MainMenu.h"
 #include <exception>
 #include <iostream>
@@ -12,7 +12,7 @@
 #include <fstream>
 #include <istream>
 #include <sstream>
-#include"Header.h"
+#include"AbstractEx.h"
 using namespace std;
 //using Ticket::opera
 

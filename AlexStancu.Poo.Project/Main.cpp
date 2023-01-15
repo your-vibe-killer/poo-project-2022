@@ -2,7 +2,7 @@
 #include "ReadTicket.h"
 #include "Ticket.h"
 #include "TicketPremium.h"
-#include "Header.h"
+#include "AbstractEx.h"
 #include <vector>
 #include <fstream>
 #include<string>
@@ -44,8 +44,6 @@ int main(int argc, char* argv[]) {
 			int realId = ticketPremium.getRealId();
 			ticketPremium.serialize(realId);
 			cout << endl;
-			cout << "DESERIALIZARE: \n";
-			ticketPremium.deserialize(realId);
 			Ticket* t1 = new TicketPremium();
 			TicketPremium* tp1 = new TicketPremium();
 			cout << t1->showMessage() << endl;

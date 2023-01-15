@@ -22,7 +22,6 @@ public:
 
 	AbstractEx(int val)
 	{
-
 		this->val = val;
 	}
 	virtual float value() = 0;
