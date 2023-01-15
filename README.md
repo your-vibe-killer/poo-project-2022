@@ -1,3 +1,9 @@
+
+
+==========> You can see this README better in the project: "README.txt" <==========
+
+
+
 See SEAT DISTRIBUTION:::::::::::::::::::::::::::::::::  at the end for context
   MAIN MENU:
         1. Create a ticket                
@@ -21,10 +27,10 @@ Category2    (Category 2 is premium, se we can only choose row 1 or 2 in the nex
 
 ***Display:******************************
 
-We can see the seats:
+#We can see the seats:
 Row    Seat taken:
      1 2 3 4 5 6 7 8 9 10 
-.1    0 0 0 0 0 0 0 0 0 1
+1    0 0 0 0 0 0 0 0 0 1
    
 #We can see the whole list of saved id s that we have in the memory at this time from "ExistingTicketsList.txt":
 List of ID's:                             
