@@ -1,10 +1,10 @@
 See SEAT DISTRIBUTION:::::::::::::::::::::::::::::::::  at the end for context
   MAIN MENU:
--        1. Create a ticket                -
--        2.Read/Check a ticket             -
--        3.See event list                  -
--        4.SECRET                          -
--        5.EXIT                            -
+        1. Create a ticket                
+        2.Read/Check a ticket             
+       3.See event list                  
+        4.SECRET                          
+        5.EXIT                            
   (Write 1 or 2 or 3 or 4 or 5):
 
 
